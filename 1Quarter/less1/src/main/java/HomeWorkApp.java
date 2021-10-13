@@ -1,5 +1,3 @@
-
-
 public class HomeWorkApp {
 
 //Task 1
