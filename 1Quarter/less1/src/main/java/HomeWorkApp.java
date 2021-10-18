@@ -18,8 +18,8 @@ public class HomeWorkApp {
 //Task 3
     public static void checkSumSign() {
         int a = -9;
-        int b = 10;
-        if ((a + b) > 0) {
+        int b = 9;
+        if ((a + b) >= 0) {
             System.out.println("Сумма положительная");
         } else {
             System.out.println("Сумма отрицательная");
@@ -28,7 +28,7 @@ public class HomeWorkApp {
 
 //Task 4
     public static void printColor() {
-        int value = 101;
+        int value = 100;
         if (value <= 0) {
             System.out.println("Красный");
         } else if (value > 0 && value <= 100) {
