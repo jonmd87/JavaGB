@@ -73,17 +73,12 @@ public class SecondLesson {
             System.out.println(s);
         }
     }
-    ex5
+    //ex5
     public static boolean leapYearOrNot (int year) {
         boolean res = true;
         if (year % 4 != 0 || (year % 100 == 0 && year % 400 != 0)) {
             res = false;
         }
-//        if (year % 4 == 0) {
-//            if (year % 100 != 0 || (year % 100 == 0 && year % 400 == 0)) {
-//                res = true;
-//            }
-//        }
         return (res);
     }
 }
