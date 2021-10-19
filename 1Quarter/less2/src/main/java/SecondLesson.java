@@ -28,6 +28,18 @@ public class SecondLesson {
         System.out.println("********printString(Hello GeekBrains, 0)********");
         printString("Hello GeekBrains", 0);
         System.out.println("********printString(Hello GeekBrains, -2)********");
+        System.out.println("");
+        System.out.println("********leapYearOrNot********");
+        System.out.println("2016" + (leapYearOrNot(2016) ? " высокосный.": " обычный."));
+        System.out.println("1994" + (leapYearOrNot(1994) ? " высокосный.": " обычный."));
+        System.out.println("1991" + (leapYearOrNot(1991) ? " высокосный.": " обычный."));
+        System.out.println("1992" + (leapYearOrNot(1992) ? " высокосный.": " обычный."));
+        System.out.println("1990" + (leapYearOrNot(1990) ? " высокосный.": " обычный."));
+        System.out.println("2100" + (leapYearOrNot(2100) ? " высокосный.": " обычный."));
+        System.out.println("1980" + (leapYearOrNot(1980) ? " высокосный.": " обычный."));
+
+
+
     }
     //ex1
     public static boolean checkLimit(int num) {
@@ -61,9 +73,17 @@ public class SecondLesson {
             System.out.println(s);
         }
     }
-
+    ex5
     public static boolean leapYearOrNot (int year) {
         boolean res = true;
+        if (year % 4 != 0 || (year % 100 == 0 && year % 400 != 0)) {
+            res = false;
+        }
+//        if (year % 4 == 0) {
+//            if (year % 100 != 0 || (year % 100 == 0 && year % 400 == 0)) {
+//                res = true;
+//            }
+//        }
         return (res);
     }
 }
