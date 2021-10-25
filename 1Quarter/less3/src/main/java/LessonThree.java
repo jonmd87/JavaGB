@@ -104,7 +104,7 @@ public class LessonThree {
 //ex7
     public static boolean checkBalance(int[] arr) {
         int leftSide = 0;
-        int rightSide = 0;
+        int rightSide;
 
         for (int i = 0; i < arr.length; i++) {
             leftSide += arr[i];
