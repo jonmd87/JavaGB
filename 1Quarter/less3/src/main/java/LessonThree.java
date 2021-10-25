@@ -63,7 +63,6 @@ public class LessonThree {
 
 //ex7*
         System.out.println("Exercise 7");
-        System.out.println("");
         int[] ar = new int[] {1, 3, 5, 4, 4, 1};
         System.out.println("( true)ar" + Arrays.toString(ar) + " --> " + checkBalance(ar));
         int[] ar1 = new int[] {1, 2, 5, 4, 4, 1};
@@ -72,6 +71,16 @@ public class LessonThree {
         System.out.println("( true)ar" + Arrays.toString(ar2) + " --> " + checkBalance(ar2));
         int[] ar3 = new int[] {1, 6, 4, 4, 1};
         System.out.println("(false)ar" + Arrays.toString(ar3) + " --> " + checkBalance(ar3));
+        System.out.println("");
+
+//ex8*
+        System.out.println("Exercise 8");
+        int[] temp = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        shiftArray(temp, 1);
+        shiftArray(temp, 2);
+        shiftArray(temp, -2);
+
+
     }
 
     public static int[] createArray(int len, int initialValue) {
@@ -117,5 +126,27 @@ public class LessonThree {
             }
         }
         return (false);
+    }
+
+//ex8*
+    public static void shiftArray(int[] originalArray, int shift) {
+        int num;
+        if (shift < 0) {
+            num = originalArray.length - Math.abs(shift);
+            System.out.println("shift [" + shift + "]             << ");
+        } else {
+            num = shift;
+            System.out.println("shift [" + shift + "]             >> ");
+        }
+        int[] arr = originalArray.clone();
+        for (int i = 0; i < num; i++) {
+            int last = arr[arr.length - 1];
+            for (int y = arr.length; y - 2 >= 0; y--) {
+                arr[y - 1] = arr[y - 2];
+            }
+            arr[0] = last;
+        }
+        System.out.println("before shift -->" + Arrays.toString(originalArray));
+        System.out.println(" after shift -->" + Arrays.toString(arr));
     }
  }
