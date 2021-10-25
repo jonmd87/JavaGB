@@ -56,12 +56,33 @@ public class LessonThree {
         int[] arr5 = createArray(max, max * max - max);
         System.out.println("createArray(len = 10, initialValue = 90) -return-> " + Arrays.toString(arr5));
 
-        
+        exerciseSix(max); // exercise 6
     }
 
     public static int[] createArray(int len, int initialValue) {
         int arr[] = new int[len];
         Arrays.fill(arr, initialValue);
         return (arr);
+    }
+
+//ex6
+    public static void exerciseSix(int len) {
+        int[] arr6 = new int[len];
+        for (int i = 0; i < arr6.length; i++) {
+            arr6[i] = (int)(Math.random() * len);
+        }
+        int min = arr6[0];
+        int max = arr6[0];
+        for (int i = 1; i < arr6.length; i++) {
+            if (arr6[i] > max) {
+                max = arr6[i];
+            }
+            if (arr6[i] < min) {
+                min = arr6[i];
+            }
+        }
+        System.out.println("array --> " + Arrays.toString(arr6));
+        System.out.println("min = " + min);
+        System.out.println("max = " + max);
     }
 }
