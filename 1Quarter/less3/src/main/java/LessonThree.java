@@ -55,8 +55,23 @@ public class LessonThree {
         System.out.println("Exercise 5");
         int[] arr5 = createArray(max, max * max - max);
         System.out.println("createArray(len = 10, initialValue = 90) -return-> " + Arrays.toString(arr5));
-
+        System.out.println("");
+//ex6*
+        System.out.println("Exercise 6");
         exerciseSix(max); // exercise 6
+        System.out.println("");
+
+//ex7*
+        System.out.println("Exercise 7");
+        System.out.println("");
+        int[] ar = new int[] {1, 3, 5, 4, 4, 1};
+        System.out.println("( true)ar" + Arrays.toString(ar) + " --> " + checkBalance(ar));
+        int[] ar1 = new int[] {1, 2, 5, 4, 4, 1};
+        System.out.println("(false)ar" + Arrays.toString(ar1) + " --> " + checkBalance(ar1));
+        int[] ar2 = new int[] {1, 3, 3, 3, 9, 1};
+        System.out.println("( true)ar" + Arrays.toString(ar2) + " --> " + checkBalance(ar2));
+        int[] ar3 = new int[] {1, 6, 4, 4, 1};
+        System.out.println("(false)ar" + Arrays.toString(ar3) + " --> " + checkBalance(ar3));
     }
 
     public static int[] createArray(int len, int initialValue) {
@@ -85,4 +100,22 @@ public class LessonThree {
         System.out.println("min = " + min);
         System.out.println("max = " + max);
     }
-}
+
+//ex7
+    public static boolean checkBalance(int[] arr) {
+        int leftSide = 0;
+        int rightSide = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            leftSide += arr[i];
+            rightSide = 0;
+            for (int y = i + 1; y < arr.length; y++) {
+                rightSide += arr[y];
+            }
+            if (leftSide == rightSide) {
+                return (true);
+            }
+        }
+        return (false);
+    }
+ }
