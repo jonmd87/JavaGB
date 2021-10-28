@@ -101,9 +101,7 @@ public class TIcTocToe {
     }
 
     public static boolean isCellValid(int x, int y) {
-        System.out.printf("size = %d\nx = %d\ny = %d\n", size, x, y);
         if (x > 0 && y > 0 && --x < size && --y < size) {
-            System.out.printf("size = %d\nx = %d\ny = %d\n", size, x, y);
             if (map[y][x] == DOT_empty) {
                 map[y][x] = DOT_x;
                 return true;
