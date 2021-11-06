@@ -5,18 +5,17 @@ public class Plate {
 
     public static void main(String[] args) {}
 
-    public Plate() {this(0);}
+    public Plate() {
+        this.foodQuantity = 0;
+    }
 
     public Plate(int foodQuantity) {
-        this.foodQuantity = foodQuantity;
+        this.foodQuantity = makePositive(foodQuantity);
     }
 
     public void setFoodQuantity(int foodQuantity) {
-        if (foodQuantity > 0) {
-            this.foodQuantity = foodQuantity;
-        } else {
-            System.out.println("!!!Only positive numbers!!!");
-        }
+        this.foodQuantity = makePositive(foodQuantity);
+
     }
 
     public int getFoodQuantity() {return (this.foodQuantity);}
@@ -33,8 +32,16 @@ public class Plate {
         if ((this.foodQuantity - amount) > -1) {
             this.foodQuantity -= amount;
             return true;
-        } else {
-            return false;
         }
+        return false;
+    }
+
+    public void addFood(int food) {
+        this.foodQuantity += makePositive(food);
+    }
+
+
+    public static int makePositive(int number) {
+        return number > 0 ? number : 0;
     }
 }

@@ -1,6 +1,7 @@
 package ru.gb.gerasimenko;
 
 public class Cat {
+    private int stdAppetite = 10;
     private String name;
     private int appetite;
     private boolean satiety; // сытость
@@ -11,9 +12,12 @@ public class Cat {
         this(name, 0);
     }
 
+/*
+** Конструктор создает голодного кота даже если внести 0(ноль)
+*/
     public Cat(String name, int appetite) {
         this.name = name;
-        this.setAppetite(appetite);
+        this.appetite = appetite > 0 ? appetite : stdAppetite;
     }
 
 /*
@@ -23,12 +27,9 @@ public class Cat {
 ** иначе ничего не меняется.
  */
     public void setAppetite(int appetite) {
-        if (appetite > 0) {
-            this.appetite = appetite;
-            this.setSatiety();
-        }
+        this.appetite = appetite > 0 ? appetite : 0;
+        this.setSatiety();
     }
-
 
 /*
 ** Метод PRIVATE void setSatiety() устанвливает является ли конкретный кот голодным,
@@ -38,11 +39,7 @@ public class Cat {
 ** !!! голодный он или нет, никто из вне не решит за него)))
  */
     private void setSatiety() {
-        if (this.appetite == 0) {
-            this.satiety = true;
-        } else {
-            this.satiety = false;
-        }
+        this.satiety = this.appetite == 0 ? true : false;
     }
 
     public String getName() {return this.name;}
