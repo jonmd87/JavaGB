@@ -10,7 +10,8 @@ public class HomeWorkLessSeven
 
     public static void main( String[] args ) {
         Cat[] cats = createCatsArray(10, 30);
-        Plate plate1 = new Plate(100);
+        Plate plate1 = new Plate();
+        plate1.setFoodQuantity(100);
 
         System.out.println("Hungry cats:");
         printCatsSatiety(cats);
@@ -32,10 +33,10 @@ public class HomeWorkLessSeven
     }
 
     public static void feedCats(Cat[] cats, Plate plate) {
-        if (cats == null || cats.length < 1 || plate == null) {return ;}
+        if (cats == null || cats.length < 1 || plate == null) {return ;}  //CHECK FOR NULL
 
         for (Cat c : cats) {
-            if (c == null) {continue;}
+            if (c == null) {continue;} //CHECK FOR NULL
             if (plate.getFoodQuantity() >= c.getAppetite() && plate.decreaseFoodQuantity(c.getAppetite())) {
                 c.setAppetite(0);
             }
@@ -43,11 +44,11 @@ public class HomeWorkLessSeven
     }
 
     public static void printCatsSatiety(Cat[] cats) {
-        if (cats == null || cats.length < 1) {return;}
+        if (cats == null || cats.length < 1) {return;} //CHECK FOR NULL
 
         System.out.printf("%-10s %10s %10s %20s\n" , "NAME", "APETITE", "SATIETY", "CONCLUSION");
         for (Cat c : cats) {
-            if (c == null) {continue;}
+            if (c == null) {continue;} //CHECK FOR NULL
             System.out.printf("%-10s %10d %10b ", c.getName(), c.getAppetite(), c.getSatiety());
             System.out.printf("%20s\n", (c.getSatiety() ? " is full." : " is hangry."));
         }
@@ -58,7 +59,7 @@ public class HomeWorkLessSeven
         maxAppetite = maxAppetite > 0 ? maxAppetite : defaultAppetite;
 
         Cat[] cats = new Cat[members];
-        if (cats == null) {return null;}
+        if (cats == null) {return null;} //CHECK FOR NULL
 
         Random random = new Random();
         String catName = "Cat";
@@ -72,9 +73,9 @@ public class HomeWorkLessSeven
 
     public static int needFood(Cat[] cats) {
         int food = 0;
-        if (cats != null && cats.length > 0) {
+        if (cats != null && cats.length > 0) { //CHECK FOR NULL
             for (Cat c : cats) {
-                if (c == null) {continue;}
+                if (c == null) {continue;}  //CHECK FOR NULL
                 food += c.getAppetite();
             }
         }

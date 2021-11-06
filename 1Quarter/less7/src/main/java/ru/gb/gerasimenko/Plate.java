@@ -40,7 +40,12 @@ public class Plate {
         this.foodQuantity += makePositive(food);
     }
 
-
+/* Метод  public static int makePositive(int number) получает число
+** если число положительное возвращяем его
+** иначе возвращаем 0(ноль)
+**
+**
+*/
     public static int makePositive(int number) {
         return number > 0 ? number : 0;
     }
