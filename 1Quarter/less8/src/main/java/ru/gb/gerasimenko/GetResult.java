@@ -9,10 +9,13 @@ public class GetResult {
     private static String MessageFormatError = "Format Error";
     private static boolean Error = false;
 
+    private static boolean negative = false;
+
     public static String  getResult(String src) {
         Error = false;
         if (src.length() > 0) {
             src = ifNeedBrackets(src);
+            System.out.println("src in start[" + src + "]");
             src = polishMethod(src, src.length());
         }
         return Error ? ErrorMessage : src;
@@ -32,18 +35,33 @@ public class GetResult {
         OperStck.create(length);
         NumbStck.create(length);
         for (int i = 0; i < length; ) {
+            negative = false;
+            i = checkIsNegative(src, i);
             if (Character.isDigit(src.charAt(i))) {
                 NumbStck.push(new BigDecimal(src.substring(i, lastDigit(src, i))));
-                for (; i < length && (Character.isDigit(src.charAt(i)) || src.charAt(i) == '.');
-                     i++);
+                if (negative) {NumbStck.push(NumbStck.pop().multiply(new BigDecimal("-1")));}
+                for (; i < length && (Character.isDigit(src.charAt(i)) || src.charAt(i) == '.'); i++);
             }
             for (; i < length && !Character.isDigit(src.charAt(i)); i++) {
-                    OperStck.solve(src.charAt(i));
+                OperStck.solve(src.charAt(i));
             }
+            NumbStck.printStack();
+            OperStck.printStack();
         }
         while (OperStck.findLast() > 0) {NumbStck.calculateTwoLast(OperStck.pop());}
         src = NumbStck.getLastElement().toPlainString();
         return src;
+    }
+
+    private static int checkIsNegative(String src, int ind) {
+        if (src.charAt(ind) == '-' && ind == 0){
+            negative = true;
+            ind += 1;
+        } else if  (ind > 1 && src.charAt(ind - 1) == '-' && src.charAt(ind - 2) == '(') {
+            negative = true;
+            OperStck.pop();
+        }
+        return ind;
     }
 
 

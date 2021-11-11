@@ -5,31 +5,41 @@ import java.math.BigDecimal;
 import static java.math.MathContext.DECIMAL32;
 
 public class NumbStck {
-    private static BigDecimal[] stack;
-    private static int stackLenght;
+    private static BigDecimal[] Stack;
+    private static int StackLenght;
 
     public static void main(String[] args) {}
 
     public static BigDecimal[] create(int lenght) {
         if (lenght > 0) {
-            stackLenght = lenght;
-            stack = new BigDecimal[lenght];
+            StackLenght = lenght;
+            Stack = new BigDecimal[lenght];
         }
-        return stack;
+        return Stack;
+    }
+
+    public static BigDecimal pop() {
+        int last = findLast();
+        if (last > 0) {
+            BigDecimal temp = getLastElement();
+            Stack[last - 1] = null;
+            return temp;
+        }
+        return null;
     }
 
     public static void push(BigDecimal bigDecimal) {
-        stack[findLast()] =bigDecimal;
+        Stack[findLast()] =bigDecimal;
     }
 
     public static BigDecimal getLastElement() {
         int last = findLast() - 1;
-        return stack[last];
+        return Stack[last];
     }
 
     public static int findLast() {
         int i = 0;
-        while (i < stackLenght && stack[i] != null) {
+        while (i < StackLenght && Stack[i] != null) {
             i++;
         }
         return i;
@@ -37,9 +47,9 @@ public class NumbStck {
 
     public static void printStack() {
         int i = 0;
-        System.out.println("Number stack:");
-        while (i < stackLenght) {
-            System.out.println((i) + ") --> [" + stack[i] + "]");
+        System.out.println("Number Stack:");
+        while (i < StackLenght) {
+            System.out.println((i) + ") --> [" + Stack[i] + "]");
             i++;
         }
     }
@@ -56,41 +66,41 @@ public class NumbStck {
         BigDecimal temp;
         switch (operation) {
             case ('+') :
-                temp = stack[previous].add(stack[last]);
-                stack[last] = null;
-                stack[previous] = null;
+                temp = Stack[previous].add(Stack[last]);
+                Stack[last] = null;
+                Stack[previous] = null;
                 push(temp);
                 break;
 
             case ('-') :
-                temp = stack[previous].subtract(stack[last], DECIMAL32);
-                stack[last] = null;
-                stack[previous] = null;
+                temp = Stack[previous].subtract(Stack[last], DECIMAL32);
+                Stack[last] = null;
+                Stack[previous] = null;
                 push(temp);
                 break;
 
             case ('*') :
-                temp = stack[previous].multiply(stack[last], DECIMAL32);
-                stack[last] = null;
-                stack[previous] = null;
+                temp = Stack[previous].multiply(Stack[last], DECIMAL32);
+                Stack[last] = null;
+                Stack[previous] = null;
                 push(temp);
                 break;
 
             case ('/') :
-                if (stack[last].compareTo(new BigDecimal("0")) == 0) {
+                if (Stack[last].compareTo(new BigDecimal("0")) == 0) {
                     GetResult.setError(0); // 0 for error message "can'tdivede by zero"
                     break;
                 }
-                temp = stack[previous].divide(stack[last], DECIMAL32);
-                stack[last] = null;
-                stack[previous] = null;
+                temp = Stack[previous].divide(Stack[last], DECIMAL32);
+                Stack[last] = null;
+                Stack[previous] = null;
                 push(temp);
                 break;
 
             case ('^') :
-                temp = stack[previous].pow(stack[last].intValue(), DECIMAL32);
-                stack[last] = null;
-                stack[previous] = null;
+                temp = Stack[previous].pow(Stack[last].intValue(), DECIMAL32);
+                Stack[last] = null;
+                Stack[previous] = null;
                 push(temp);
                 break;
 
