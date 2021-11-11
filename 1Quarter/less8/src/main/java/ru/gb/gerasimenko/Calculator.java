@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class Calculator
 {
     private static String Title = "GERASIMENKO";
-    private static String MyButtons = "D ^B789/456*123-.0=+";
+    private static String MyButtons = "D(^B789/456*123-.0=+";
     private static String Equal = "=";
     private static String Result = "result: ";
     private static String ReplaceD = "AC"; // [C] clear in MYBUTTONS

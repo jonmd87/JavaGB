@@ -4,20 +4,27 @@ public class OperStck {
 
 // индекс массива является приорететом операции
 //                                      0     1     2
-    private static String[] Priority = {" ", "+-", "/*", "^"};
+    private static String[] Priority = {"()", "+-", "/*", "^"};
     private static char[] Stack;
     private static int StackLenght;
 
     public static void main(String[] args) {}
 
     public static void solve(char currentOper) {
-            if ((findLast() == 0) || (findLast() > 0 && priority(currentOper) > priority(getLastElement()))) {
+            if ((findLast() == 0) || currentOper == '(') {
+                push(currentOper);
+            } else if (findLast() > 0 && priority(currentOper) > priority(getLastElement())) {
                 push(currentOper);
             } else if (findLast() > 0 && priority(currentOper) <= priority(getLastElement())) {
-                while (findLast() > 0 && priority(currentOper) <= priority(getLastElement())) {
-                    NumbStck.calculateTwoLast(pop());
+                if (currentOper == ')') {
+                    while (getLastElement() != '(') {NumbStck.calculateTwoLast(pop());}
+                    pop();
+                } else {
+                    while (findLast() > 0 && priority(currentOper) <= priority(getLastElement())) {
+                        NumbStck.calculateTwoLast(pop());
+                    }
+                    push(currentOper);
                 }
-                push(currentOper);
             }
     }
 
