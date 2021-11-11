@@ -9,21 +9,27 @@ public class OperStck {
     private static int StackLenght;
 
     public static void main(String[] args) {}
+// 1 point --> если пустой стэк или это открывающая скобка
+// 2 point --> если в стэке есть операция и ее приоретет ниже чем текущий кидаем в стэк
+// 3 point --> если стэк есть операции и ее приоретет выше или равени текущему
+//  3.1 point --> если это [)] пока не встретишь [(] вынимай все операции из стека. как встретишь [(] удали его из стека
+//  3.2 point --> пока в стеке есть операции и ее приоретет выше или равени текущему, вынимай все операции из стека
+//  3.3 point --> закинь в стек операцию currentOper
 
     public static void solve(char currentOper) {
-            if ((findLast() == 0) || currentOper == '(') {
+            if ((findLast() == 0) || currentOper == '(') {      // 1 point
                 push(currentOper);
-            } else if (findLast() > 0 && priority(currentOper) > priority(getLastElement())) {
+            } else if (findLast() > 0 && priority(currentOper) > priority(getLastElement())) { // 2 point
                 push(currentOper);
-            } else if (findLast() > 0 && priority(currentOper) <= priority(getLastElement())) {
+            } else if (findLast() > 0 && priority(currentOper) <= priority(getLastElement())) { // 3 point
                 if (currentOper == ')') {
-                    while (getLastElement() != '(') {NumbStck.calculateTwoLast(pop());}
+                    while (getLastElement() != '(') {NumbStck.calculateTwoLast(pop());} // 3.1 point
                     pop();
                 } else {
-                    while (findLast() > 0 && priority(currentOper) <= priority(getLastElement())) {
+                    while (findLast() > 0 && priority(currentOper) <= priority(getLastElement())) { //3.2 point
                         NumbStck.calculateTwoLast(pop());
                     }
-                    push(currentOper);
+                    push(currentOper); // 3.3 point
                 }
             }
     }
