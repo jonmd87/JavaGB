@@ -15,7 +15,6 @@ public class GetResult {
         Error = false;
         if (src.length() > 0) {
             src = ifNeedBrackets(src);
-            System.out.println("src in start[" + src + "]");
             src = polishMethod(src, src.length());
         }
         return Error ? ErrorMessage : src;
@@ -45,8 +44,6 @@ public class GetResult {
             for (; i < length && !Character.isDigit(src.charAt(i)); i++) {
                 OperStck.solve(src.charAt(i));
             }
-            NumbStck.printStack();
-            OperStck.printStack();
         }
         while (OperStck.findLast() > 0) {NumbStck.calculateTwoLast(OperStck.pop());}
         src = NumbStck.getLastElement().toPlainString();
