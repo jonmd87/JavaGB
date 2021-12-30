@@ -2,8 +2,9 @@ package ru.gb.gerasimenko;
 
 public class OperStck {
 
-// индекс массива является приорететом операции
-//                                      0     1     2
+/* индекс массива является приорететом операции
+**    !!!!!!!!!!!! перемести скобки на самый высший приоретет,
+*/    //                                  0     1     2
     private static String[] Priority = {"()", "+-", "/*", "^"};
     private static char[] Stack;
     private static int StackLenght;
