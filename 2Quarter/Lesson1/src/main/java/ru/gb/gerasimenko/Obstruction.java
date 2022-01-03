@@ -22,31 +22,21 @@ public class Obstruction {
         if (players != null && obstructions != null) {
             for (Object p : players) {
                 System.out.println("First player " + p.toString() + "started.");
-                obstruction(p, obstructions);
+                if (p instanceof Cat) {
+
+                }
             }
         }
 
     }
 
-    private static void obstruction(Object player, Object[] obstructions) {
-        Object p;
-        if (player instanceof Cat) {
-            p = (Cat) player;
-        } else if (player instanceof Human) {
-            p = (Human) player;
-        } else if (player instanceof Robot) {
-            p = (Robot) player;
-        }
-        for (Object o : obstructions) {
-            player.
-        }
-    }
 
     private static Object[] createObstructions() {
         Object[] obstructions = new Object[max];
 
         for (int i = 0; i < obstructions.length; i++) {
-            if (i % 2 == 0) {
+            int ran = random.nextInt(max);
+            if (ran % 2 == 0) {
                 obstructions[i] = new Treadmill(random.nextInt((i + 1) * 100)); // bound must be positive
             }
             else {
