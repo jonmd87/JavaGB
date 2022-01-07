@@ -2,7 +2,7 @@ package ru.gb.gerasimenko;
 
 import java.util.Random;
 
-public class App {
+public class oApp {
     private static String BORDER = "------------------------------------\n";
     private static int max;
     private static int KM = 1000;
