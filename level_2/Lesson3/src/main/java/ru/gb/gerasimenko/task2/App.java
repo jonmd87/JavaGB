@@ -13,7 +13,7 @@ public class App {
         PhoneBook phoneBook = new PhoneBook();
         randomPhoneBook(phoneBook);
         phoneBook.printPhoneBook();
-        phoneBook.add("null",null); //testing null
+        phoneBook.add("null",null); //testing for null
         for (String s : new HashSet<>(phoneBook.getValues())) {
             System.out.println(phoneBook.get(s));
         }
