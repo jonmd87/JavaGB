@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.gb.gerasimenko.cowsbulls.CowsBullsController">
+    <padding>
+        <Insets bottom="5" left="5" right="5" top="5" />
+    </padding>
+
+    <MenuBar>
+        <Menu text="File">
+            <MenuItem fx:id="MenuItemNewGame" onAction="#onNewGameSelected" text="New Game" />
+            <MenuItem fx:id="MenuItemExit" onAction="#onExitSelected" text="Exit" />
+        </Menu>
+    </MenuBar>
+
+    <TextArea fx:id="ResultArea" editable="false" VBox.vgrow="ALWAYS" />
+
+    <HBox>
+        <TextField fx:id="AnswerField" HBox.hgrow="ALWAYS" />
+        <Button defaultButton="true" onAction="#onClickCheckButton" text="Check" />
+    </HBox>
+</VBox>
