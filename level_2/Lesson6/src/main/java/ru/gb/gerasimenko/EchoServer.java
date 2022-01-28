@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 
 public class EchoServer {
 
-    private byte lang = 1;
+    private byte lang = 0;
     private Participant server;
 
     public static void main(String[] args) {
@@ -28,28 +28,31 @@ public class EchoServer {
                 System.out.println(Define.CLIENT_CONNNECTED.getValue(lang));
                 server.startCommandListener();
             }
-            while (true) {
-                if (server.connectionActive()) {
-                    final String incMsg = server.readMessage();
-                    if (Define.END_SESION.getValue(lang).equalsIgnoreCase(incMsg)) {
-                        server.sendMessage(incMsg);
-                        server.close();
-                        break;
-                    }
-                    printIncomingMessage(incMsg);
-                    server.sendMessage(processing(incMsg));
-                }
-            }
-
+            listenNet();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void listenNet() throws IOException {
+        while (true) {
+            final String incMsg = server.readMessage();
+            if (Define.END_SESION.getValue(lang).equalsIgnoreCase(incMsg)) {
+                server.sendMessage(incMsg);
+                server.close();
+                break;
+            }
+            printIncomingMessage(incMsg);
+            server.sendMessage(processing(incMsg));
         }
     }
 
     private  void printIncomingMessage(String incMsg) {
         System.out.printf("%s[%s]\n", Define.CLIENT.getValue(lang), incMsg);
     }
-
+/*
+    Метод private String processing(String incMsg) имитирует какую то работу.
+ */
     private String processing(String incMsg) {
         String temp = "";
 

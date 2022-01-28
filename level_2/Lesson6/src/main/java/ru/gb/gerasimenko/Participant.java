@@ -69,11 +69,7 @@ public class Participant {
                 Scanner scanner = new Scanner(System.in);
                 while (true) {
                     final String message = scanner.nextLine();
-                    try {
-                        sendMessage(message);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    try { sendMessage(message);} catch (IOException e) {e.printStackTrace();}
                 }
             }
         });
