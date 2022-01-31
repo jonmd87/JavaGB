@@ -14,7 +14,7 @@ public class ChatRoomApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ChatRoomApplication.class.getResource("BlaBlaRoom.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 640, 720);
-        stage.setTitle(Phrases.MAIN_TITLE.value(ButtonsController.getLang()));
+        stage.setTitle(Phrases.MAIN_TITLE.value((byte)1));
         stage.setScene(scene);
         stage.show();
     }

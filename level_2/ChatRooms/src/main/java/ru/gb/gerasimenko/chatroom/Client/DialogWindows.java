@@ -1,18 +1,27 @@
-package ru.gb.gerasimenko.chatroom.ChatServer;
+package ru.gb.gerasimenko.chatroom.Client;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import ru.gb.gerasimenko.chatroom.Helper.Buttons;
-import ru.gb.gerasimenko.chatroom.Helper.Defines;
 import ru.gb.gerasimenko.chatroom.Helper.Phrases;
 
-import java.text.DecimalFormat;
 import java.util.Optional;
 
 public class DialogWindows {
 
     private int padding = 10;
+
+    public byte chooseLanguage() {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+
+        ButtonType buttonEng = new ButtonType(Buttons.ENGLISH.value((byte)0));
+        ButtonType buttonRus = new ButtonType(Buttons.RUSSIAN.value((byte) 1));
+
+        alert.getButtonTypes().setAll(buttonEng, buttonRus);
+        Optional<ButtonType> result = alert.showAndWait();
+        return (byte) ((result.get() == buttonEng)? 0: 1);
+    }
 
     public void alertWindow(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -36,7 +45,7 @@ public class DialogWindows {
         return (result.get() == buttonOk) ? true : false;
     }
 
-    public boolean loginWindow(boolean registration, byte lang) {
+    public void loginWindow(boolean registration, byte lang) {
         Dialog<ButtonType> loginWindow = new Dialog<>();
         loginWindow.setTitle(Buttons.AUTHORIZATION.value(lang));
         loginWindow.setHeaderText(Phrases.NEED_AUTHOR.value(lang));
@@ -73,7 +82,6 @@ public class DialogWindows {
 
         ButtonType buttonOk = new ButtonType(Buttons.OK.value(lang));
         ButtonType buttonCancel = new ButtonType(Buttons.CANCEL.value(lang));
-
         ButtonType buttonRegistration = new ButtonType(Buttons.REGISTRATION.value(lang));
 
         loginWindow.getDialogPane().setContent(grid);
@@ -82,12 +90,10 @@ public class DialogWindows {
             loginWindow.getDialogPane().getButtonTypes().removeAll(buttonRegistration);
         }
         Optional<ButtonType> result = loginWindow.showAndWait();
-        if (result.get() == buttonOk) {
-            this.alertWindow(Phrases.ALLERT.value(lang), "", Phrases.WRONG_AUTH.value(lang));
-        } else if (result.get() == buttonRegistration) {
+        if (result.get() == buttonRegistration) {
             this.loginWindow(true, lang);
         }
-        return false;
+
     }
 
 }

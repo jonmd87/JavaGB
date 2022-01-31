@@ -3,7 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import ru.gb.gerasimenko.chatroom.Helper.Buttons;
 import javafx.fxml.FXML;
-import ru.gb.gerasimenko.chatroom.ChatServer.DialogWindows;
+import ru.gb.gerasimenko.chatroom.Client.DialogWindows;
 
 public class ButtonsController {
     @FXML public Menu file;
@@ -41,7 +41,7 @@ public class ButtonsController {
     }
 
     public void onAuthorizationClick(ActionEvent actionEvent) {
-        System.out.println(dialogWindows.loginWindow(false, lang));
+        dialogWindows.loginWindow(false, lang);
     }
 
     public void onLangEngClick(ActionEvent actionEvent) {
@@ -60,8 +60,11 @@ public class ButtonsController {
         }
     }
 
-    public static byte getLang() {
+    public  byte getLang() {
         return lang;
+    }
+    public  void setLang(byte language) {
+        lang = language;
     }
 
     public void onSendButtonClick(ActionEvent actionEvent) {

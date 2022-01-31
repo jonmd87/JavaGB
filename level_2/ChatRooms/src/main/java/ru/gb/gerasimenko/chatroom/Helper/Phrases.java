@@ -23,11 +23,11 @@ public enum Phrases {
         return lang == 0 ? getEng() : getRus();
     }
 
-    private String getRus() {
+    public String getRus() {
         return this.rus;
     }
 
-    private String getEng() {
+    public String getEng() {
         return this.eng;
     }
 }

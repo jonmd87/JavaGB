@@ -22,4 +22,12 @@ public class User {
     public String getPassword() {
         return password;
     }
+
+    public int hashCodeNick() {
+        return this.nick.hashCode();
+    }
+
+    public int hashCodeLogin() {
+        return this.login.hashCode();
+    }
 }
