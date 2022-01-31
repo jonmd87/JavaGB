@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="ru.gb.gerasimenko.chatroom.ButtonsController">
+    <padding><Insets bottom="5" left="5" right="5" top="5" /></padding>
+
+    <MenuBar>
+        <Menu fx:id="file" text="File">
+            <MenuItem fx:id="authorization" onAction="#onAuthorizationClick" text="Authorization" />
+            <Menu fx:id="language" text="Language">
+                <MenuItem fx:id="eng" onAction="#onLangEngClick" text="English" />
+                <MenuItem fx:id="rus" onAction="#onLangRusClick" text="Russian" />
+            </Menu>
+            <MenuItem fx:id="exit" onAction="#onExitClick" text="Exit" />
+        </Menu>
+    </MenuBar>
+
+    <HBox>
+        <Label fx:id="labelSelectMember" text="Select Member" HBox.hgrow="ALWAYS">
+            <padding><Insets right="10" /></padding>
+        </Label>
+        <ComboBox fx:id="comboBoxMembers"  HBox.hgrow="ALWAYS">
+         <effect>
+            <ColorAdjust />
+         </effect></ComboBox>
+    </HBox>
+    <TabPane fx:id="TabPane" VBox.vgrow="ALWAYS">
+        <Tab fx:id="generalTab" closable="false" text="General">
+            <TextArea fx:id="generalTextArea" />
+        </Tab>
+    </TabPane>
+    <HBox>
+        <TextField fx:id="textFild" HBox.hgrow="ALWAYS" />
+        <VBox>
+            <padding><Insets left="10" /></padding>
+            <Button fx:id="send" text="Send" HBox.hgrow="ALWAYS" />
+        </VBox>
+    </HBox>
+
+</VBox>
