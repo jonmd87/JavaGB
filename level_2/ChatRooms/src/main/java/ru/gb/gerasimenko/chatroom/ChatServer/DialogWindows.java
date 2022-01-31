@@ -4,13 +4,25 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import ru.gb.gerasimenko.chatroom.Helper.Buttons;
+import ru.gb.gerasimenko.chatroom.Helper.Defines;
 import ru.gb.gerasimenko.chatroom.Helper.Phrases;
 
+import java.text.DecimalFormat;
 import java.util.Optional;
 
 public class DialogWindows {
 
     private int padding = 10;
+
+    public void alertWindow(String title, String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        ButtonType buttonOk = new ButtonType(Buttons.OK.value((byte) 0));
+        alert.getButtonTypes().setAll(buttonOk);
+        alert.showAndWait();
+    }
 
     public boolean exitWindow(byte lang) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -71,7 +83,7 @@ public class DialogWindows {
         }
         Optional<ButtonType> result = loginWindow.showAndWait();
         if (result.get() == buttonOk) {
-            System.out.println(buttonOk.getText());
+            this.alertWindow(Phrases.ALLERT.value(lang), "", Phrases.WRONG_AUTH.value(lang));
         } else if (result.get() == buttonRegistration) {
             this.loginWindow(true, lang);
         }

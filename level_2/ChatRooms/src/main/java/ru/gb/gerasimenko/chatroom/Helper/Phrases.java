@@ -1,6 +1,7 @@
 package ru.gb.gerasimenko.chatroom.Helper;
 
 public enum Phrases {
+    ALLERT("Allert", "Внимание"),
     MAIN_TITLE("Bla Bla Room", "Переговорка"),
     NICK("Nick", "Ник"),
     LOGIN("Login", "Логин"),
