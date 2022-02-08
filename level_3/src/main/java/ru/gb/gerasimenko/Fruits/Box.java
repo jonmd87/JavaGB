@@ -1,7 +1,6 @@
 package ru.gb.gerasimenko.Fruits;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Box<T extends Fruit> {
     private ArrayList<T> list;
@@ -29,7 +28,8 @@ public class Box<T extends Fruit> {
     }
 
     public<T extends Fruit> boolean compare(Box<T> box) {
-        return this.getWeight() == box.getWeight();
+        double epsilon = 0.000001d;
+        return (Math.abs(this.getWeight() - box.getWeight()) < epsilon);
     }
 
     public <T> ArrayList<T> getList() {

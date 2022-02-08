@@ -37,30 +37,21 @@ public class Task3 {
 
         System.out.println("Weight of the box with  appleBox: " + appleBox.getWeight());
         System.out.println("Weight of the box with orangeBox: " + orangeBox.getWeight());
-        System.out.printf("the weight in both boxes is %sthe same\n", orangeBox.compare(appleBox) ? "" : "not ");
+        System.out.printf("the weight in both boxes is %sthe same\n\n", orangeBox.compare(appleBox) ? "" : "not ");
 
-        for (int i = 0; i < appleBox.getList().size(); i++) {
-            Apple a = (Apple) appleBox.getList().get(i);
-            System.out.println(a.getName());
-        }
 
-        for (int i = 0; i < orangeBox.getList().size(); i++) {
-            Orange o = (Orange) orangeBox.getList().get(i);
-            System.out.println(o.getName());
-        }
+        Box<Apple> secondAppleBox = Box.create();
+        Box<Orange> secondOrangeBox = Box.create();
 
-        Box<Apple> appleBox1 = Box.create();
-        Box<Orange> orangeBox1 = Box.create();
 
-//        task3.pourFruits(appleBox1.getList(), appleBox.getList());
-//        task3.pourFruits(orangeBox1.getList(), orangeBox.getList());
-        orangeBox1.addToBox(new Orange());
+        System.out.println("Add another orange");
+        secondOrangeBox.addToBox(new Orange());
 
-        System.out.println("Weight of the box with  appleBox: " + appleBox.getWeight());
+        System.out.println("\nWeight of the box with  appleBox: " + appleBox.getWeight());
         System.out.println("Weight of the box with orangeBox: " + orangeBox.getWeight());
-        System.out.println("Weight of the box with  appleBox1: " + appleBox1.getWeight());
-        System.out.println("Weight of the box with orangeBox1: " + orangeBox1.getWeight());
-        System.out.printf("the weight in both boxes is %sthe same\n", orangeBox1.compare(appleBox1) ? "" : "not ");
+        System.out.println("Weight of the box with  secondAppleBox: " + secondAppleBox.getWeight());
+        System.out.println("Weight of the box with secondOrangeBox: " + secondOrangeBox.getWeight());
+        System.out.printf("the weight in both boxes is %sthe same\n", secondOrangeBox.compare(secondAppleBox) ? "" : "not ");
     }
 
     public<T extends Fruit> void addFruitsInBox(Box<T> box, int value, T fruit) {
@@ -69,9 +60,10 @@ public class Task3 {
         }
     }
 
-    public<T extends Fruit> void pourFruits(ArrayList<? super Fruit> destination, ArrayList<? extends Fruit> source) {
-        for (Fruit fruit : source) {
-            
+    // если использовать этот метод для пересыпания то возможно пересыпать из applebox в orangebox
+    public<T extends Fruit> void pourFruits(ArrayList<? super T> destination, ArrayList<? extends T> source) {
+        for (T t : source) {
+            t.
         }
     }
 }
