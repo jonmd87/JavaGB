@@ -32,7 +32,22 @@ public class Box<T extends Fruit> {
         return (Math.abs(this.getWeight() - box.getWeight()) < epsilon);
     }
 
-    public <T> ArrayList<T> getList() {
-        return (ArrayList<T>) this.list;
+    public T pullOneOut() {
+        T fruit = null;
+        int last = this.list.size() - 1;
+        if (last >= 0) {
+            fruit = this.list.get(last);
+            this.list.remove(last);
+        }
+        return fruit;
+    }
+
+//    f. Написать метод, который позволяет пересыпать фрукты из текущей коробки в другую коробку
+//            (помним про сортировку фруктов, нельзя яблоки высыпать в коробку с апельсинами),
+//    соответственно в текущей коробке фруктов не остается, а в другую перекидываются объекты, которые были в этой коробке;
+    public void pourToAnotherBox(Box<T> secondBox) {
+        while (this.list.size() > 0) {
+            secondBox.addToBox(this.pullOneOut());
+        }
     }
 }
