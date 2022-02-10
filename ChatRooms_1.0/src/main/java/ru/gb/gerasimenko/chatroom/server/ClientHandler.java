@@ -1,11 +1,12 @@
 package ru.gb.gerasimenko.chatroom.server;
 
 import ru.gb.gerasimenko.chatroom.ChatParticipant;
-import ru.gb.gerasimenko.chatroom.Handlers.Handler;
 import ru.gb.gerasimenko.chatroom.Helper.Commands;
+import ru.gb.gerasimenko.chatroom.Helper.Phrases;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.concurrent.Phaser;
 
 public class ClientHandler {
     private ChatServer chatServer;
@@ -20,7 +21,6 @@ public class ClientHandler {
             if (authentication()) {
                 listeningNet();
             }
-            chatServer.unsubscribe(this);
         }).start();
     }
 
@@ -30,19 +30,21 @@ public class ClientHandler {
                 final String message = this.participant.readMessage();
                 this.nick = chatServer.distribution(message);
                 if (!chatServer.subscribe(this)) {
+                    participant.sendMessage(Commands.ERROR.getStr() + Commands.ARG_SEPARATOR.getStr() + Phrases.WRONG_AUTH.ordinal());
                     this.nick = null;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.sendMessage(Commands.AUTH_IN.getStr() + Commands.ARG_SEPARATOR.getStr() + this.nick);
+        chatServer.sendUserList();
         return (this.nick != null);
     }
 
 
     private void listeningNet() {
         try {
-            this.participant.sendMessage(Commands.AUTH_IN.getStr() + Commands.STR_SEPARATOR.getStr() + this.nick);
             while (this.participant.connectionActive()) {
                 System.out.println("listening net");
                 final String message = this.participant.readMessage();
@@ -54,12 +56,12 @@ public class ClientHandler {
     }
 
     public void sendMessage(String message) {
-        try {
-            if (this.participant.connectionActive()) {
+        if (this.participant.connectionActive()) {
+            try {
                 this.participant.sendMessage(message);
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

@@ -12,7 +12,7 @@ public class ProgressiveCounting {
     }
 
     public void createThreads() {
-        this.threads = new MyThread[quantity];
+        threads = new MyThread[quantity];
         int lenght = this.arr.length / quantity;
         int start = 0;
         for (int i = 0; i < quantity; i++) {
@@ -37,7 +37,7 @@ public class ProgressiveCounting {
 
     public void collectArray() {
         int start = 0;
-        for (int i = 0; i < this.threads.length; i++) {
+        for (int i = 0; i < threads.length; i++) {
             System.arraycopy(threads[i].getArray(), 0, this.arr, start, threads[i].getArray().length);
             start += threads[i].getArray().length;
         }

@@ -20,13 +20,15 @@ public class DialogWindows {
     private String strSepar;
     private String auth_cmd;
     private String reg_cmd;
+    private boolean loggenedIn;
 
     public DialogWindows() {
+        loggenedIn = false;
         this.minNickLenght = (byte) DgtlConsts.MIN_NICK_LENTH.value();
         this.minLoginPasswordLenth = (byte) DgtlConsts.MIN_LOGPASS_LEN.value();
         this.padding = DgtlConsts.PADDING.value();
         this.cmdSepar = Commands.CMD_SEPARATOR.getStr();
-        this.strSepar = Commands.STR_SEPARATOR.getStr();
+        this.strSepar = Commands.ARG_SEPARATOR.getStr();
         this.auth_cmd = Commands.AUTH_IN.getStr();
         this.reg_cmd = Commands.REGISTRATION.getStr();
     }
@@ -188,6 +190,7 @@ public class DialogWindows {
     }
 
     public String privateMessage(String author, ArrayList<String> data, byte lang) {
+        System.out.println("in privateMessage");
         String answer = "";
         if (data == null || data.size() == 0) {
             return answer;
@@ -232,7 +235,7 @@ public class DialogWindows {
             } else if (result.get() == buttonSend && !sendtoFld.getText().isEmpty() &&
                     !txtFld.getText().isEmpty() && data.contains(sendtoFld.getText())) {
                     answer += Commands.SEND_TO.getStr() + Commands.CMD_SEPARATOR.getStr() +
-                            sendtoFld.getText() + "from" + author + Commands.STR_SEPARATOR.getStr() +
+                            sendtoFld.getText() + "from" + author + Commands.ARG_SEPARATOR.getStr() +
                             author + ": " + txtFld.getText();
                     break;
             }

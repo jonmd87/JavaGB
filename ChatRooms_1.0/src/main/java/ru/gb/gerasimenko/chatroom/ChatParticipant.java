@@ -34,9 +34,10 @@ public class ChatParticipant implements Closeable {
 
     @Override
     public void close() throws IOException {
-        if (this.socket != null) {this.socket.close();}
+        System.out.println("in close Participant");
         if (this.inputStream != null) {this.inputStream.close();}
         if (this.outputStream != null) {this.outputStream.close();}
+        if (this.socket != null) {this.socket.close();}
     }
 
     public String readMessage() throws IOException {
@@ -48,11 +49,11 @@ public class ChatParticipant implements Closeable {
 
     public void sendMessage(String message) throws IOException {
         if (this.connectionActive()) {
-            this.outputStream.writeUTF(message);
+                this.outputStream.writeUTF(message);
         }
     }
 
     public boolean connectionActive() {
-        return ((this.socket != null) && (this.inputStream != null) && (this.outputStream != null));
+        return !this.socket.isClosed();
     }
 }

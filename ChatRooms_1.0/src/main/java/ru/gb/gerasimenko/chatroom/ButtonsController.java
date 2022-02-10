@@ -4,11 +4,11 @@ import javafx.scene.control.*;
 import ru.gb.gerasimenko.chatroom.Helper.Buttons;
 import javafx.fxml.FXML;
 import ru.gb.gerasimenko.chatroom.Helper.Commands;
+import ru.gb.gerasimenko.chatroom.Helper.Phrases;
 import ru.gb.gerasimenko.chatroom.Helper.StrConsts;
 import ru.gb.gerasimenko.chatroom.client.ChatClient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ButtonsController {
     @FXML public Menu menuFile;
@@ -40,11 +40,12 @@ public class ButtonsController {
         send = new Button(Buttons.SEND.value(this.lang));
         prvtMsg = new Button(Buttons.PRIVATE_MSG.value(this.lang));
         membersListLabel = new Label(Buttons.ONLINE.value(this.lang));
+        membersTextArea = new TextArea();
         generalTextArea = new TextArea();
         textField = new TextField();
-        membersTextArea = new TextArea();
-        chatClient = new ChatClient(this, this.dialogWindows);
+        chatClient = new ChatClient(this, this.dialogWindows, Thread.currentThread());
         loggedIN = false;
+        memberList = new ArrayList<>();
     }
 
     public void initButtons() {
@@ -60,8 +61,10 @@ public class ButtonsController {
 
     public void onExitClick(ActionEvent actionEvent) {
         if (dialogWindows.exitWindow(lang)) {
-            this.chatClient.close();
-            System.exit(0);
+            String answer = Commands.LOGOUT.getStr() + Commands.CMD_SEPARATOR.getStr() +
+                    chatClient.getNick();
+            System.out.println(answer + "| in onExit click");
+            chatClient.sendMessage(answer);
         }
     }
 
@@ -74,7 +77,7 @@ public class ButtonsController {
             String enteredText = Commands.BROADCAST.getStr() + Commands.CMD_SEPARATOR.getStr();
             enteredText += this.chatClient.getNick() + ": " + this.textField.getText();
             if (enteredText != null && !enteredText.isEmpty()) {
-                chatClient.sendMessage(enteredText + StrConsts.END_LINE.getStr());
+                chatClient.sendMessage(enteredText);
             }
         }
         textField.clear();
@@ -99,33 +102,53 @@ public class ButtonsController {
     }
 
     public void onRegistrationClick(ActionEvent actionEvent) {
-        if (loggedIN) {
-            return;
-        }
-        final String authMsg = this.dialogWindows.registrationWindow(lang);
-        if (authMsg.length() > 1) {
-            this.chatClient.sendMessage(authMsg);
+        System.out.println("loggenid = " + this.loggedIN);
+        if (!loggedIN) {
+            final String authMsg = this.dialogWindows.registrationWindow(lang);
+            if (authMsg.length() > 1) {
+                this.chatClient.sendMessage(authMsg);
+            }
         }
     }
 
     public void onAuthorizationClick(ActionEvent actionEvent) {
-        if (loggedIN) {
-            return;
-        }
-        final String authMsg = this.dialogWindows.loginWindow(lang);
-        if (authMsg.length() > 1) {
-            this.chatClient.sendMessage(authMsg);
+        System.out.println("log genid = " + this.loggedIN);
+        if (!loggedIN) {
+            final String authMsg = this.dialogWindows.loginWindow(lang);
+            if (authMsg.length() > 1) {
+                this.chatClient.sendMessage(authMsg);
+            }
         }
     }
 
     public void updateMemberList(ArrayList<String> data) {
-        if (data != null && data.size() > 0) {
+        System.out.println("inUpadateUserlist");
+        if (data != null) {
+            if (data.size() > this.memberList.size()) {broadcastNewMemberJoined(data);}
+            else if (data.size() < this.memberList.size()) {broadcastMemberLeftChat(data);}
             this.memberList = data;
             this.membersTextArea.clear();
                 for (String s : memberList) {
                     this.membersTextArea.appendText(s + StrConsts.END_LINE.getStr());
                 }
+
         }
+    }
+
+    private void broadcastMemberLeftChat(ArrayList<String> data) {
+        for (String s : this.memberList) {
+            if (!data.contains(s)) {
+                this.addMessage(s + " " + Phrases.LEAVE_CHAT.value(lang));
+            }
+        }
+    }
+
+    private void broadcastNewMemberJoined(ArrayList<String> data) {
+       for (String s : data) {
+           if (!this.memberList.contains(s)) {
+               this.addMessage(s + " " + Phrases.ENETERED_IN_CHAT.value(lang));
+           }
+       }
     }
 
     public void onPrvtMsg(ActionEvent actionEvent) {

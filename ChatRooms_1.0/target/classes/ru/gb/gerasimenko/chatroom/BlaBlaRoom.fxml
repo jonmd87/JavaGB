@@ -21,8 +21,8 @@
     <HBox maxHeight="1.7976931348623157E308" spacing="5.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
         <VBox>
             <Label fx:id="membersListLabel" text="Online clients:" VBox.vgrow="ALWAYS" />
-            <TextArea fx:id="membersTextArea" editable="false" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="137.0" VBox.vgrow="ALWAYS" />
-            <Button fx:id="prvtMsg" onAction="#onPrvtMsg" prefHeight="20.0" prefWidth="136.0" text="Private message" wrapText="true" VBox.vgrow="ALWAYS"/>
+            <TextArea fx:id="membersTextArea" editable="false" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="137.0" VBox.vgrow="ALWAYS" ></TextArea>
+            <Button fx:id="prvtMsg" onAction="#onPrvtMsg" prefHeight="20.0" prefWidth="136.0" text="Private message" wrapText="true" VBox.vgrow="ALWAYS"> </Button>
         </VBox>
         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <TextArea fx:id="generalTextArea" editable="false" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />

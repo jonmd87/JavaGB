@@ -5,12 +5,14 @@ public enum Commands {
     UPDATE_USERLIST("$update_userList$"),
     MEMBER_LEFT("&member_left&"),
     CMD_SEPARATOR("###"),
-    STR_SEPARATOR("@&@"),
+    ARG_SEPARATOR("@@@"),
+    STR_SEPARATOR("&&&"),
     REGISTRATION("/registration"),
     DELETE_ACCOUNT("/delete_account"),
     AUTH_IN("/auth_in"),
     LOGOUT("/end"),
     SEND_TO("/sendTO"),
+    ERROR("/error"),
     BROADCAST("/Broadcast");
 
     private String commands;
