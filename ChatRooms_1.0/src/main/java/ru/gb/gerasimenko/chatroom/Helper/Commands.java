@@ -1,12 +1,11 @@
 package ru.gb.gerasimenko.chatroom.Helper;
 
 public enum Commands {
-    NEW_MEMBER("&new_member&"),
-    UPDATE_USERLIST("$update_userList$"),
-    MEMBER_LEFT("&member_left&"),
     CMD_SEPARATOR("###"),
     ARG_SEPARATOR("@@@"),
     STR_SEPARATOR("&&&"),
+    UPDATE_USERLIST("/update_userList"),
+    USER_MOVEMENTS("/user_movements"),
     REGISTRATION("/registration"),
     DELETE_ACCOUNT("/delete_account"),
     AUTH_IN("/auth_in"),

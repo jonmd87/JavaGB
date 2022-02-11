@@ -1,6 +1,5 @@
 package ru.gb.gerasimenko.chatroom.server;
 
-import ru.gb.gerasimenko.chatroom.Helper.Phrases;
 import ru.gb.gerasimenko.chatroom.Helper.StrConsts;
 
 public class ServerStarting {

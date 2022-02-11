@@ -34,7 +34,6 @@ public class ChatParticipant implements Closeable {
 
     @Override
     public void close() throws IOException {
-        System.out.println("in close Participant");
         if (this.inputStream != null) {this.inputStream.close();}
         if (this.outputStream != null) {this.outputStream.close();}
         if (this.socket != null) {this.socket.close();}

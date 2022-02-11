@@ -1,6 +1,6 @@
 package ru.gb.gerasimenko.chatroom.server;
 
-import ru.gb.gerasimenko.chatroom.ChatParticipant;
+import ru.gb.gerasimenko.chatroom.Helper.Phrases;
 import ru.gb.gerasimenko.chatroom.server.ServerRequestHandlers.*;
 import ru.gb.gerasimenko.chatroom.Helper.Commands;
 import ru.gb.gerasimenko.chatroom.Helper.DgtlConsts;
@@ -48,16 +48,38 @@ public class ChatServer {
             return false;
         }
         clients.put(nick, newClient);
+        String message = Commands.BROADCAST.getStr() +
+                            Commands.CMD_SEPARATOR.getStr() +
+                                Commands.BROADCAST.getStr() +
+                                    Commands.ARG_SEPARATOR.getStr() +
+                                        Commands.USER_MOVEMENTS.getStr() +
+                                            Commands.STR_SEPARATOR.getStr() +
+                                                nick + Commands.STR_SEPARATOR.getStr() +
+                                                    Phrases.ENETERED_IN_CHAT.ordinal();
+        this.distribution(message);
         return true;
     }
 
     public void unsubscribe(String nick) {
         clients.remove(nick);
+        if (clients.size() > 0) {
+            String message = Commands.BROADCAST.getStr() +
+                                Commands.CMD_SEPARATOR.getStr() +
+                                    Commands.BROADCAST.getStr() +
+                                        Commands.ARG_SEPARATOR.getStr() +
+                                            Commands.USER_MOVEMENTS.getStr() +
+                                                 Commands.STR_SEPARATOR.getStr() +
+                                                    nick + Commands.STR_SEPARATOR.getStr() +
+                                                        Phrases.LEAVE_CHAT.ordinal();
+            this.distribution(message);
+        }
     }
 
     public void sendUserList() {
-        String data = Commands.BROADCAST.getStr() + Commands.CMD_SEPARATOR.getStr() +
-                Commands.UPDATE_USERLIST.getStr() + Commands.ARG_SEPARATOR.getStr();
+        String data = Commands.BROADCAST.getStr() +
+                        Commands.CMD_SEPARATOR.getStr() +
+                            Commands.UPDATE_USERLIST.getStr() +
+                                Commands.ARG_SEPARATOR.getStr();
         for (String s : clients.keySet()) {
             data += s + Commands.STR_SEPARATOR.getStr();
         }
@@ -73,7 +95,6 @@ public class ChatServer {
         handler.put(Commands.DELETE_ACCOUNT.getStr(), new DeleteAccountHandlerServer());
         handler.put(Commands.AUTH_IN.getStr(), new AuthenticationHandlerServer());
         handler.put(Commands.LOGOUT.getStr(), new LogoutHandlerServer());
-        handler.put(Commands.SEND_TO.getStr(), new TargetedDeliveryHandlerServer());
         handler.put(Commands.BROADCAST.getStr(), new BroadcastHandlerServer());
     }
 }

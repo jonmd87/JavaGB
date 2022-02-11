@@ -6,7 +6,6 @@ import ru.gb.gerasimenko.chatroom.Helper.Phrases;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.concurrent.Phaser;
 
 public class ClientHandler {
     private ChatServer chatServer;

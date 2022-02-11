@@ -1,41 +1,57 @@
 package ru.gb.gerasimenko.chatroom;
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import ru.gb.gerasimenko.chatroom.Helper.Buttons;
 import javafx.fxml.FXML;
 import ru.gb.gerasimenko.chatroom.Helper.Commands;
-import ru.gb.gerasimenko.chatroom.Helper.Phrases;
 import ru.gb.gerasimenko.chatroom.Helper.StrConsts;
 import ru.gb.gerasimenko.chatroom.client.ChatClient;
 
 import java.util.ArrayList;
 
 public class ButtonsController {
-    @FXML public Menu menuFile;
-    @FXML public MenuItem authorization;
-    @FXML public MenuItem registration;
-    @FXML public MenuItem language;
-    @FXML public MenuItem exit;
-    @FXML public TextArea generalTextArea;
-    @FXML public TextField textField;
-    @FXML public TextArea membersTextArea;
-    @FXML public Button send;
-    @FXML public Button prvtMsg;
-    @FXML public Label membersListLabel;
+    @FXML
+    private ListView<String> listView;
+    @FXML
+    public Menu menuFile;
+    @FXML
+    public MenuItem authorization;
+    @FXML
+    public MenuItem registration;
+    @FXML
+    public MenuItem language;
+    @FXML
+    public MenuItem exit;
+    @FXML
+    public TextArea generalTextArea;
+    @FXML
+    public TextField textField;
+    @FXML
+    public TextArea membersTextArea;
+    @FXML
+    public Button send;
+    @FXML
+    public Button prvtMsg;
+    @FXML
+    public Label membersListLabel;
 
     private byte lang = 0;
     private DialogWindows dialogWindows;
     private final ChatClient chatClient;
     private boolean loggedIN;
+    @FXML
     private ArrayList<String> memberList;
 
     public ButtonsController() {
         dialogWindows = new DialogWindows();
-      //  lang = dialogWindows.chooseLanguage();
+        //  lang = dialogWindows.chooseLanguage();
         menuFile = new Menu(Buttons.FILE.value(this.lang));
         authorization = new MenuItem(Buttons.AUTHORIZATION.value(this.lang));
         registration = new MenuItem(Buttons.REGISTRATION.value(this.lang));
         language = new MenuItem(Buttons.LANGUAGE.value(this.lang));
+        listView = new ListView<>();
         exit = new MenuItem(Buttons.EXIT.value(this.lang));
         send = new Button(Buttons.SEND.value(this.lang));
         prvtMsg = new Button(Buttons.PRIVATE_MSG.value(this.lang));
@@ -68,7 +84,7 @@ public class ButtonsController {
         }
     }
 
-    public  void setLang(byte language) {
+    public void setLang(byte language) {
         this.lang = language;
     }
 
@@ -122,36 +138,19 @@ public class ButtonsController {
     }
 
     public void updateMemberList(ArrayList<String> data) {
-        System.out.println("inUpadateUserlist");
         if (data != null) {
-            if (data.size() > this.memberList.size()) {broadcastNewMemberJoined(data);}
-            else if (data.size() < this.memberList.size()) {broadcastMemberLeftChat(data);}
             this.memberList = data;
             this.membersTextArea.clear();
-                for (String s : memberList) {
-                    this.membersTextArea.appendText(s + StrConsts.END_LINE.getStr());
-                }
-
-        }
-    }
-
-    private void broadcastMemberLeftChat(ArrayList<String> data) {
-        for (String s : this.memberList) {
-            if (!data.contains(s)) {
-                this.addMessage(s + " " + Phrases.LEAVE_CHAT.value(lang));
+            for (String s : memberList) {
+                this.membersTextArea.appendText(s + StrConsts.END_LINE.getStr());
             }
         }
     }
 
-    private void broadcastNewMemberJoined(ArrayList<String> data) {
-       for (String s : data) {
-           if (!this.memberList.contains(s)) {
-               this.addMessage(s + " " + Phrases.ENETERED_IN_CHAT.value(lang));
-           }
-       }
-    }
-
     public void onPrvtMsg(ActionEvent actionEvent) {
         chatClient.sendMessage(this.dialogWindows.privateMessage(chatClient.getNick(), memberList, lang));
+    }
+
+    public void onListViewClick(MouseEvent mouseEvent) {
     }
 }
