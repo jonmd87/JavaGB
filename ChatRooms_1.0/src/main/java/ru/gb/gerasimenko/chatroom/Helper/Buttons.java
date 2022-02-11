@@ -4,6 +4,7 @@ public enum Buttons {
     FILE("File","Файл"),
     ENGLISH("English", "Английский"),
     RUSSIAN("Russian", "Русский"),
+    SING_OUT("Sing Out", "Покинуть Чат"),
     PRIVATE_MSG("Private message", "Личное сообщение"),
     AUTHORIZATION("Authorization", "Авторизация"),
     LANGUAGE("Language", "Язык"),

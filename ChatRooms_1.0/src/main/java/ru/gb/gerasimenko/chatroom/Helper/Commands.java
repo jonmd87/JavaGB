@@ -4,6 +4,7 @@ public enum Commands {
     CMD_SEPARATOR("###"),
     ARG_SEPARATOR("@@@"),
     STR_SEPARATOR("&&&"),
+    TARGED_DELIVERY("/targ_delivery"),
     UPDATE_USERLIST("/update_userList"),
     USER_MOVEMENTS("/user_movements"),
     REGISTRATION("/registration"),

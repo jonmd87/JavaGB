@@ -5,8 +5,9 @@ import ru.gb.gerasimenko.chatroom.client.ChatClient;
 public class RequestHandler_ClientAUTH implements RequestHandler_Client {
     @Override
     public String handler(String data, ChatClient client) {
+//        System.out.println("AUTh |" + data + "|");
         client.setNick(data);
-        client.getButtonsController().loggedIn();
+        client.getButtonsController().setAuth();
         return null;
     }
 }

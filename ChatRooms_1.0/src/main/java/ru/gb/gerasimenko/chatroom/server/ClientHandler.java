@@ -16,11 +16,13 @@ public class ClientHandler {
         this.nick = null;
         this.chatServer = chatServer;
         this.participant = new ChatParticipant(serverSocket);
-        new Thread(() -> {
+        Thread current =  new Thread(() -> {
             if (authentication()) {
                 listeningNet();
             }
-        }).start();
+        });
+        current.setDaemon(true);
+        current.start();
     }
 
     private boolean authentication() {
@@ -47,7 +49,9 @@ public class ClientHandler {
             while (this.participant.connectionActive()) {
                 System.out.println("listening net");
                 final String message = this.participant.readMessage();
-                chatServer.distribution(message);
+                if (this.participant.connectionActive()) {
+                    chatServer.distribution(message);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,5 +70,9 @@ public class ClientHandler {
 
     public String getNick() {
         return nick;
+    }
+
+    public ChatParticipant getParticipant() {
+        return participant;
     }
 }

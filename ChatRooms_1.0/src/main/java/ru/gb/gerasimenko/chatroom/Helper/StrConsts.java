@@ -5,6 +5,7 @@ public enum StrConsts {
     WAITIN_NEXT_CONNECTION("Wainting next connection ..."),
     SERV_RUNNING("The server is running ..."),
     SERV_WAITNG("The server is waiting ..."),
+    COMMA(","),
     END_LINE("\n"),
     SESSION_CLOSED("Session closed.");
 

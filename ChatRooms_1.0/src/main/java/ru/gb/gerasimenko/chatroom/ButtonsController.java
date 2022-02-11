@@ -10,6 +10,7 @@ import ru.gb.gerasimenko.chatroom.Helper.StrConsts;
 import ru.gb.gerasimenko.chatroom.client.ChatClient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ButtonsController {
     @FXML
@@ -29,70 +30,41 @@ public class ButtonsController {
     @FXML
     public TextField textField;
     @FXML
-    public TextArea membersTextArea;
-    @FXML
     public Button send;
     @FXML
-    public Button prvtMsg;
+    public Button privateMsg;
     @FXML
     public Label membersListLabel;
+   // @FXML private MenuItem singOUT; //[возможно решится когда будем проходить THREAD] скрыл потому-что при|Authorisation|->|Sing out|->|Authorisation| выскакивает ошибка ->Not on FX application thread; currentThread = Thread-2
 
     private byte lang = 0;
-    private DialogWindows dialogWindows;
+    private boolean loggedIN = false;
+    private final DialogWindows dialogWindows = new DialogWindows();
     private final ChatClient chatClient;
-    private boolean loggedIN;
-    @FXML
-    private ArrayList<String> memberList;
+    private final ArrayList<String> memberList = new ArrayList<>();
 
     public ButtonsController() {
-        dialogWindows = new DialogWindows();
-        //  lang = dialogWindows.chooseLanguage();
-        menuFile = new Menu(Buttons.FILE.value(this.lang));
-        authorization = new MenuItem(Buttons.AUTHORIZATION.value(this.lang));
-        registration = new MenuItem(Buttons.REGISTRATION.value(this.lang));
-        language = new MenuItem(Buttons.LANGUAGE.value(this.lang));
-        listView = new ListView<>();
-        exit = new MenuItem(Buttons.EXIT.value(this.lang));
-        send = new Button(Buttons.SEND.value(this.lang));
-        prvtMsg = new Button(Buttons.PRIVATE_MSG.value(this.lang));
-        membersListLabel = new Label(Buttons.ONLINE.value(this.lang));
-        membersTextArea = new TextArea();
-        generalTextArea = new TextArea();
-        textField = new TextField();
-        chatClient = new ChatClient(this, this.dialogWindows, Thread.currentThread());
-        loggedIN = false;
-        memberList = new ArrayList<>();
+        chatClient = new ChatClient(this, this.dialogWindows);
     }
 
     public void initButtons() {
         menuFile.setText(Buttons.FILE.value(this.lang));
         authorization.setText(Buttons.AUTHORIZATION.value(this.lang));
         registration.setText(Buttons.REGISTRATION.value(this.lang));
+       // singOUT.setText(Buttons.SING_OUT.value(this.lang)); ////[возможно решится когда будем проходить THREAD] скрыл потому-что при|Authorisation|->|Sing out|->|Authorisation| выскакивает ошибка ->Not on FX application thread; currentThread = Thread-2
         language.setText(Buttons.LANGUAGE.value(this.lang));
         exit.setText(Buttons.EXIT.value(this.lang));
         send.setText(Buttons.SEND.value(this.lang));
-        prvtMsg.setText(Buttons.PRIVATE_MSG.value(this.lang));
+        privateMsg.setText(Buttons.PRIVATE_MSG.value(this.lang));
         membersListLabel.setText(Buttons.ONLINE.value(this.lang));
-    }
-
-    public void onExitClick(ActionEvent actionEvent) {
-        if (dialogWindows.exitWindow(lang)) {
-            String answer = Commands.LOGOUT.getStr() + Commands.CMD_SEPARATOR.getStr() +
-                    chatClient.getNick();
-            System.out.println(answer + "| in onExit click");
-            chatClient.sendMessage(answer);
-        }
-    }
-
-    public void setLang(byte language) {
-        this.lang = language;
     }
 
     public void onSendButtonClick(ActionEvent actionEvent) {
         if (loggedIN) {
-            String enteredText = Commands.BROADCAST.getStr() + Commands.CMD_SEPARATOR.getStr();
-            enteredText += this.chatClient.getNick() + ": " + this.textField.getText();
-            if (enteredText != null && !enteredText.isEmpty()) {
+            if (!this.textField.getText().isEmpty()) {
+                String enteredText = Commands.BROADCAST.getStr() + Commands.CMD_SEPARATOR.getStr() +
+                                        Commands.BROADCAST.getStr() + Commands.ARG_SEPARATOR.getStr() +
+                                            this.chatClient.getNick() + ": " + this.textField.getText();
                 chatClient.sendMessage(enteredText);
             }
         }
@@ -105,52 +77,76 @@ public class ButtonsController {
         initButtons();
     }
 
-    public byte getLang() {
-        return lang;
-    }
-
-    public void loggedIn() {
-        this.loggedIN = true;
-    }
-
     public void addMessage(String message) {
         generalTextArea.appendText(message + StrConsts.END_LINE.getStr());
     }
 
     public void onRegistrationClick(ActionEvent actionEvent) {
-        System.out.println("loggenid = " + this.loggedIN);
-        if (!loggedIN) {
-            final String authMsg = this.dialogWindows.registrationWindow(lang);
-            if (authMsg.length() > 1) {
-                this.chatClient.sendMessage(authMsg);
-            }
+        final String authMsg = this.dialogWindows.registrationWindow(lang);
+        if (authMsg.length() > 1) {
+            this.chatClient.sendMessage(authMsg);
         }
     }
 
     public void onAuthorizationClick(ActionEvent actionEvent) {
-        System.out.println("log genid = " + this.loggedIN);
-        if (!loggedIN) {
-            final String authMsg = this.dialogWindows.loginWindow(lang);
-            if (authMsg.length() > 1) {
-                this.chatClient.sendMessage(authMsg);
-            }
+        final String authMsg = this.dialogWindows.singINWindow(lang);
+        if (authMsg.length() > 1) {
+            this.chatClient.sendMessage(authMsg);
         }
     }
 
-    public void updateMemberList(ArrayList<String> data) {
+    public void updateMemberList(String[] data) {
         if (data != null) {
-            this.memberList = data;
-            this.membersTextArea.clear();
-            for (String s : memberList) {
-                this.membersTextArea.appendText(s + StrConsts.END_LINE.getStr());
-            }
+            this.memberList.clear();
+            this.memberList.addAll(Arrays.asList(data));
+            this.listView.getItems().clear();
+            this.listView.getItems().addAll(data);
         }
     }
 
     public void onPrvtMsg(ActionEvent actionEvent) {
-        chatClient.sendMessage(this.dialogWindows.privateMessage(chatClient.getNick(), memberList, lang));
+        if (loggedIN) {
+            final String message = dialogWindows.privateMessage(chatClient.getNick(), "", memberList, lang);
+            chatClient.sendMessage(message);
+        }
     }
 
     public void onListViewClick(MouseEvent mouseEvent) {
+        if (this.memberList.size() > 1 && mouseEvent.getClickCount() == 2) {
+           final String recipient = listView.getSelectionModel().getSelectedItem();
+           final String message = dialogWindows.privateMessage(chatClient.getNick(), recipient, memberList, lang);
+           chatClient.sendMessage(message);
+        }
     }
+
+    public void onExitClick(ActionEvent actionEvent) {
+        if (loggedIN) {
+            onSingOutClick(actionEvent);
+        }
+        System.exit(0);
+    }
+
+    public void onSingOutClick(ActionEvent actionEvent) {
+        if (dialogWindows.exitWindow(lang)) {
+            String answer = Commands.LOGOUT.getStr() + Commands.CMD_SEPARATOR.getStr() +
+                    chatClient.getNick();
+            chatClient.sendMessage(answer);
+            this.setAuth();
+            generalTextArea.clear();
+            listView.getItems().clear();
+        }
+    }
+
+    public void setAuth() {
+        this.loggedIN = !this.loggedIN;
+        this.authorization.setVisible(!this.loggedIN);
+        this.registration.setVisible(!this.loggedIN);
+       // this.singOUT.setVisible(this.loggedIN);
+        this.textField.setEditable(this.loggedIN);
+    }
+
+    public void setLang(byte language) {
+        this.lang = language;
+    }
+    public byte getLang() {return lang;}
 }

@@ -26,6 +26,7 @@ public class AuthenticationHandlerServer implements ServerRequestHandler {
 
     @Override
     public String handler(String data, ChatServer server) {
+        System.out.println("AUTH |" + data +"|");
         String[] split = data.split(Commands.ARG_SEPARATOR.getStr());
         String login = split[0];
         Integer password = Integer.parseInt(split[1]);

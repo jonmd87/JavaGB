@@ -3,30 +3,24 @@ package ru.gb.gerasimenko.chatroom;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import ru.gb.gerasimenko.chatroom.Helper.Buttons;
-import ru.gb.gerasimenko.chatroom.Helper.Commands;
-import ru.gb.gerasimenko.chatroom.Helper.DgtlConsts;
-import ru.gb.gerasimenko.chatroom.Helper.Phrases;
+import ru.gb.gerasimenko.chatroom.Helper.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 public class DialogWindows {
 
-    private byte minNickLenght;
-    private byte minLoginPasswordLenth;
-    private int padding;
-    private String cmdSepar;
-    private String strSepar;
-    private String auth_cmd;
-    private String reg_cmd;
-    private boolean loggenedIn;
+    private final byte minNickLenght;
+    private final byte minLoginPasswordLenth;
+    private final int padding = DgtlConsts.PADDING.value();
+    private final String cmdSepar;
+    private final String strSepar;
+    private final String auth_cmd;
+    private final String reg_cmd;
 
     public DialogWindows() {
-        loggenedIn = false;
         this.minNickLenght = (byte) DgtlConsts.MIN_NICK_LENTH.value();
         this.minLoginPasswordLenth = (byte) DgtlConsts.MIN_LOGPASS_LEN.value();
-        this.padding = DgtlConsts.PADDING.value();
         this.cmdSepar = Commands.CMD_SEPARATOR.getStr();
         this.strSepar = Commands.ARG_SEPARATOR.getStr();
         this.auth_cmd = Commands.AUTH_IN.getStr();
@@ -58,7 +52,7 @@ public class DialogWindows {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(Buttons.EXIT.value(lang));
         alert.setHeaderText(Phrases.CONFIRM_EXIT.value(lang));
-        alert.setContentText(Phrases.AREYUSHURE.value(lang));
+        alert.setContentText(Phrases.AREYOUSHURE.value(lang));
         ButtonType buttonOk = new ButtonType(Buttons.OK.value(lang));
         ButtonType buttonCancel = new ButtonType(Buttons.CANCEL.value(lang));
         alert.getButtonTypes().setAll(buttonOk, buttonCancel);
@@ -66,7 +60,7 @@ public class DialogWindows {
         return (result.get() == buttonOk) ? true : false;
     }
 
-    public String loginWindow(byte lang) {
+    public String singINWindow(byte lang) {
         Dialog<ButtonType> loginWindow = new Dialog<>();
         loginWindow.setTitle(Buttons.AUTHORIZATION.value(lang));
         loginWindow.setHeaderText(Phrases.NEED_AUTHOR.value(lang));
@@ -160,7 +154,7 @@ public class DialogWindows {
         while (true) {
             if (result.get() == buttonOk) {
                 if (checkEnteredData(nickTxtFld.getText(), loginTxtFld.getText(), passFld.getText(), lang)){
-                    alertWindow(Phrases.ALLERT.value(lang), Phrases.AFTER_REGISTER_MSG.value(lang), "");
+                    alertWindow(Phrases.ALERT.value(lang), Phrases.AFTER_REGISTER_MSG.value(lang), "");
                     answer += reg_cmd + cmdSepar + nickTxtFld + strSepar + loginLbl + strSepar + passFld.getText().hashCode();
                     break;
                 }
@@ -184,18 +178,13 @@ public class DialogWindows {
         }
 
         if (alarm.length() > 1) {
-            this.alertWindow(Phrases.ALLERT.value(lang), Phrases.ALLERT.value(lang), alarm);
+            this.alertWindow(Phrases.ALERT.value(lang), Phrases.ALERT.value(lang), alarm);
         }
         return (alarm.length() < 1) ? true : false;
     }
 
-    public String privateMessage(String author, ArrayList<String> data, byte lang) {
-        System.out.println("in privateMessage");
+    public String privateMessage(String author, String recipient, ArrayList<String> data, byte lang) {
         String answer = "";
-        if (data == null || data.size() == 0) {
-            return answer;
-        }
-        System.out.println("in privatMessage in start " + data);
         Dialog<ButtonType> window = new Dialog<>();
         window.setTitle(Buttons.PRIVATE_MSG.value(lang));
         GridPane grid = new GridPane();
@@ -203,22 +192,27 @@ public class DialogWindows {
         grid.setHgap(padding / 2);
         grid.setVgap(padding / 2);
 
-        Label sendToLbl = new Label(Phrases.WHO_SEND_TO.value(lang));
-        GridPane.setConstraints(sendToLbl, 0, 0);
+        Label rule = new Label(Phrases.RULE.value(lang));
+        GridPane.setConstraints(rule, 0, 0);
+        grid.getChildren().add(rule);
+
+        Label sendToLbl = new Label(Phrases.RECIPIENTS.value(lang));
+        GridPane.setConstraints(sendToLbl, 0, 1);
         grid.getChildren().add(sendToLbl);
 
         TextField sendtoFld = new TextField();
+        sendtoFld.setText(recipient);
         sendtoFld.setPrefWidth(200);
-        GridPane.setConstraints(sendtoFld, 0, 1);
+        GridPane.setConstraints(sendtoFld, 0, 2);
         grid.getChildren().add(sendtoFld);
 
         Label txtLbl = new Label(Buttons.PRIVATE_MSG.value(lang));
-        GridPane.setConstraints(txtLbl, 0, 2);
+        GridPane.setConstraints(txtLbl, 0, 3);
         grid.getChildren().add(txtLbl);
 
         TextField txtFld = new TextField();
         txtFld.setPrefWidth(500);
-        GridPane.setConstraints(txtFld, 0, 3);
+        GridPane.setConstraints(txtFld, 0, 4);
         grid.getChildren().add(txtFld);
 
 
@@ -229,18 +223,29 @@ public class DialogWindows {
         window.getDialogPane().getButtonTypes().setAll(buttonSend, buttonCancel);
 
         while (true) {
-            Optional<ButtonType> result = window.showAndWait();
-            if (result.get() == buttonCancel) {
+            Optional<ButtonType> res = window.showAndWait();
+            if (res.get() == buttonCancel) {
                 break;
-            } else if (result.get() == buttonSend && !sendtoFld.getText().isEmpty() &&
-                    !txtFld.getText().isEmpty() && data.contains(sendtoFld.getText())) {
-                    answer += Commands.SEND_TO.getStr() + Commands.CMD_SEPARATOR.getStr() +
-                            sendtoFld.getText() + "from" + author + Commands.ARG_SEPARATOR.getStr() +
-                            author + ": " + txtFld.getText();
-                    break;
+            } else if (res.get() == buttonSend && !txtFld.getText().isEmpty() &&
+                                    checkFieldSendTo(data, sendtoFld.getText())) {
+                final String message = Commands.TARGED_DELIVERY.getStr() +
+                                        Commands.CMD_SEPARATOR.getStr() + author + " " + txtFld.getText() +
+                                            Commands.ARG_SEPARATOR.getStr() + author + Commands.STR_SEPARATOR.getStr() +
+                                                sendtoFld.getText().replaceAll(StrConsts.COMMA.getStr(), Commands.STR_SEPARATOR.getStr());
+                answer = message;
+                break;
+            }
+            alertWindow(Phrases.ALERT.value(lang), Phrases.WRONG_DATA.value(lang), "");
+        }
+        return answer;
+    }
+
+    private boolean checkFieldSendTo(ArrayList<String> data, String sendTo) {
+        for (String s : sendTo.split(StrConsts.COMMA.getStr())) {
+            if (!data.contains(s)) {
+                return false;
             }
         }
-        System.out.println("in privateMessage " + answer);
-        return answer;
+        return true;
     }
 }

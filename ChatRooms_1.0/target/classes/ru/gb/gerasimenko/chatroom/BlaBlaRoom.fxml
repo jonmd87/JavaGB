@@ -4,43 +4,42 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ru.gb.gerasimenko.chatroom.ButtonsController" >
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.gb.gerasimenko.chatroom.ButtonsController">
     <padding>
-        <Insets bottom="5" left="5" right="5" top="5"/>
+        <Insets bottom="5" left="5" right="5" top="5" />
     </padding>
 
     <MenuBar>
         <Menu fx:id="menuFile" text="File">
-            <MenuItem fx:id="authorization" onAction="#onAuthorizationClick" text="Authorization"/>
-            <MenuItem fx:id="registration" onAction="#onRegistrationClick" text="Registration"/>
-            <MenuItem fx:id="language" onAction="#onLanguageClick" text="Language"/>
-            <MenuItem fx:id="exit" onAction="#onExitClick" text="Exit"/>
+            <MenuItem fx:id="authorization" onAction="#onAuthorizationClick" text="Authorization" />
+            <MenuItem fx:id="registration" onAction="#onRegistrationClick" text="Registration" />
+            <MenuItem fx:id="language" onAction="#onLanguageClick" text="Language" />
+            <MenuItem fx:id="singOUT" onAction="#onSingOutClick" text="Sing Out" visible="false" />
+            <MenuItem fx:id="exit" onAction="#onExitClick" text="Exit" />
         </Menu>
     </MenuBar>
-    <HBox>
+    <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
         <VBox>
             <padding>
-                <Insets right="5" left="5"/>
+                <Insets left="5" right="5" />
             </padding>
-            <Label fx:id="membersListLabel" text="Online clients:" VBox.vgrow="ALWAYS"/>
-            <ListView fx:id="listView" VBox.vgrow="ALWAYS" maxWidth="200" onMouseClicked="#onListViewClick"></ListView>
-            <Button fx:id="prvtMsg" onAction="#onPrvtMsg" prefHeight="40.0" prefWidth="136.0" text="Private message"
-                    wrapText="true" textAlignment="CENTER" VBox.vgrow="ALWAYS"/>
+            <Label fx:id="membersListLabel" text="Online clients:" VBox.vgrow="ALWAYS" />
+            <ListView fx:id="listView" maxWidth="200.0" onMouseClicked="#onListViewClick" VBox.vgrow="ALWAYS" />
+            <Button fx:id="privateMsg" onAction="#onPrvtMsg" prefHeight="40.0" prefWidth="136.0" text="Private message" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <VBox VBox.vgrow="ALWAYS">
-            <TextArea fx:id="generalTextArea" editable="false" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-            <HBox HBox.hgrow="ALWAYS" maxHeight="Infinity" maxWidth="Infinity">
+            <TextArea fx:id="generalTextArea" editable="false" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+            <HBox maxHeight="Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS">
                 <padding>
-                    <Insets top="10"/>
+                    <Insets top="10" />
                 </padding>
-                <TextField fx:id="textField" editable="true" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="textField" editable="false" HBox.hgrow="ALWAYS" />
                 <HBox>
                     <padding>
-                        <Insets left="5"/>
+                        <Insets left="5" />
                     </padding>
-                    <Button fx:id="send" onAction="#onSendButtonClick" text="Send" HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="send" onAction="#onSendButtonClick" text="Send" HBox.hgrow="ALWAYS" />
                 </HBox>
             </HBox>
         </VBox>

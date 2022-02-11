@@ -9,15 +9,13 @@ import java.io.IOException;
 public class RequestHandler_ClientLogout implements RequestHandler_Client {
     @Override
     public String handler(String data, ChatClient client) {
-        System.out.println("in Logout");
         try {
+            client.setNick(null);
             client.getParticipant().close();
-            System.exit(0);
         } catch (IOException e) {
             System.out.println("in RequestHandler_ClientLogout");
             e.printStackTrace();
         }
-        System.out.println(client.getParticipant().connectionActive());
         return null;
     }
 }

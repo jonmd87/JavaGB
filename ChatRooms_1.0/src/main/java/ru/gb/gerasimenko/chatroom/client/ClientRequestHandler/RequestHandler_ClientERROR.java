@@ -7,7 +7,7 @@ import ru.gb.gerasimenko.chatroom.client.ChatClient;
 public class RequestHandler_ClientERROR implements RequestHandler_Client {
     @Override
     public String handler(String data, ChatClient client) {
-        System.out.println("data" + data);
+//        System.out.println("ERRORdata" + data);
         byte lang = client.getButtonsController().getLang();
         int ind = Integer.parseInt(data);
         String message = Phrases.values()[ind].value(lang);

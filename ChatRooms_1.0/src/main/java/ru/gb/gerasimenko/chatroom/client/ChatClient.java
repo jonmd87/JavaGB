@@ -14,37 +14,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ChatClient {
-    private final ChatParticipant participant;
+    private ChatParticipant participant;
     private final ButtonsController buttonsController;
     private final DialogWindows dialogWindows;
     private final Map<String, RequestHandler_Client> handler;
-    private final Thread mainThread;
     private String nick;
 
 
-    public ChatClient(ButtonsController buttonsController, DialogWindows dialogWindows, Thread thread) {
+    public ChatClient(ButtonsController buttonsController, DialogWindows dialogWindows) {
         this.buttonsController = buttonsController;
         this.dialogWindows = dialogWindows;
-        this.mainThread = thread;
-        this.participant = new ChatParticipant(StrConsts.LOCALHOST.getStr(), DgtlConsts.PORT.value());
         this.handler = new HashMap<>();
         initHandler();
-        Thread connection =  new Thread(() -> {
-                openConnection();
-        });
+        Thread connection =  new Thread(this::openConnection);
         connection.setDaemon(true);
         connection.start();
     }
 
     private void openConnection() {
         try {
-            while (this.participant.connectionActive()) {
-                String message = this.participant.readMessage();
-                System.out.println("incomingMSG CLIENT-->|" + message + "|<--");
-                String[] split = message.split(Commands.ARG_SEPARATOR.getStr());
-                for (String s : split) {System.out.println("-" + s + "-");}
-                RequestHandler_Client tempHandler = handler.get(split[0]);
-                tempHandler.handler(split[1], this);
+            while (true) {
+                this.participant = new ChatParticipant(StrConsts.LOCALHOST.getStr(), DgtlConsts.PORT.value());
+                while (this.participant.connectionActive()) {
+                    String message = this.participant.readMessage();
+                    System.out.println("incomingMSG CLIENT-->|" + message + "|<--");
+                    String[] split = message.split(Commands.ARG_SEPARATOR.getStr());
+//                    for (String s : split) {
+//                        System.out.println("-" + s + "-");
+//                    }
+                    RequestHandler_Client tempHandler = handler.get(split[0]);
+                    tempHandler.handler(split[1], this);
+                }
             }
         } catch (IOException ioEx) {
             ioEx.printStackTrace();
@@ -53,7 +53,7 @@ public class ChatClient {
 
     public void sendMessage(String message){
         try {
-            System.out.println(message + " in send message");
+//            System.out.println(message + " in send message");
             if (!message.isEmpty()) {
                 this.participant.sendMessage(message);
             }
@@ -68,20 +68,15 @@ public class ChatClient {
         this.handler.put(Commands.LOGOUT.getStr(), new RequestHandler_ClientLogout());
         this.handler.put(Commands.BROADCAST.getStr(), new RequestHandler_ClientBroadcast());
         this.handler.put(Commands.ERROR.getStr(), new RequestHandler_ClientERROR());
+        this.handler.put(Commands.USER_MOVEMENTS.getStr(), new RequestHandler_ClientUserMovement());
     }
 
     public ButtonsController getButtonsController() {return buttonsController;}
-    public Thread getMainThread() {return this.mainThread;}
-
-    public DialogWindows getDialogWindows() {
-        return dialogWindows;
-    }
-
     public ChatParticipant getParticipant() {return participant;}
     public String getNick() {
         return nick;
     }
     public void setNick(String nick) {
-        if (this.nick == null) {this.nick = nick;}
+      this.nick = nick;
     }
 }

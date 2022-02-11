@@ -8,7 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ChatParticipant implements Closeable {
-    private Socket socket;
+    private final Socket socket;
     private final DataInputStream inputStream;
     private final DataOutputStream outputStream;
 
