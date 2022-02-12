@@ -2,6 +2,7 @@ package ru.gb.gerasimenko.chatroom.Helper;
 
 public enum Phrases {
     ALERT("Alert", "Внимание"),
+    TIME_EXPIRED("Time for authorization has expired.", "Время для авторизации истекло"),
     ENTERED_IN_CHAT(" Entered in chat.", " Вошел в чат."),
     RECIPIENTS("Recipients", "Получатели"),
     LEAVE_CHAT(" Has left the chat", " Покинул чат"),
@@ -13,7 +14,7 @@ public enum Phrases {
     NEW_USER("New user ", "Новый пользователь "),
     NEED_AUTHOR("Authorization is required to continue", "Для продолжения требуется авторизация"),
     WRONG_AUTH("Wrong Login Or Password", "Неверный логин или пароль"),
-    WRONG_DATA("Wrong data", "Неверные данные"),
+    WRONG_DATA("Wrong data ", "Неверные данные "),
     CONFIRM_EXIT("Confirm exit.", "Подтверждение выхода."),
     RULE("The separator is comma!", "Разделяйте имена запятой"),
     AREYOUSHURE("Are you sure?", "Вы подтверждаете?");

@@ -8,6 +8,7 @@ public class RequestHandler_ClientAUTH implements RequestHandler_Client {
 //        System.out.println("AUTh |" + data + "|");
         client.setNick(data);
         client.getButtonsController().setAuth();
+        client.getButtonsController().generalTextArea.clear();
         return null;
     }
 }

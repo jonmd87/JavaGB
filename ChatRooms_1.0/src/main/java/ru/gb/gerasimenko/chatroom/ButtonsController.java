@@ -121,6 +121,7 @@ public class ButtonsController {
 
     public void onExitClick(ActionEvent actionEvent) {
         if (loggedIN) {
+            System.out.println("in onExitClick");
             onSingOutClick(actionEvent);
         }
         System.exit(0);

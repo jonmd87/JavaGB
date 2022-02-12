@@ -9,23 +9,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class DialogWindows {
-
-    private final byte minNickLenght;
-    private final byte minLoginPasswordLenth;
     private final int padding = DgtlConsts.PADDING.value();
-    private final String cmdSepar;
-    private final String strSepar;
-    private final String auth_cmd;
-    private final String reg_cmd;
 
-    public DialogWindows() {
-        this.minNickLenght = (byte) DgtlConsts.MIN_NICK_LENTH.value();
-        this.minLoginPasswordLenth = (byte) DgtlConsts.MIN_LOGPASS_LEN.value();
-        this.cmdSepar = Commands.CMD_SEPARATOR.getStr();
-        this.strSepar = Commands.ARG_SEPARATOR.getStr();
-        this.auth_cmd = Commands.AUTH_IN.getStr();
-        this.reg_cmd = Commands.REGISTRATION.getStr();
-    }
 
     public byte chooseLanguage() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -97,8 +82,12 @@ public class DialogWindows {
         while (true) {
             Optional<ButtonType> result = loginWindow.showAndWait();
             if (result.get() == buttonOk) {
-               if (checkEnteredData(auth_cmd, loginFld.getText(), passFld.getText(), lang)) {
-                   answer += auth_cmd + cmdSepar + loginFld.getText() + strSepar + passFld.getText().hashCode();
+               if (checkEnteredData(Commands.AUTH_IN.getStr(), loginFld.getText(), passFld.getText(), lang)) {
+                   answer += Commands.AUTH_IN.getStr() +
+                                Commands.CMD_SEPARATOR.getStr() +
+                                    loginFld.getText() +
+                                        Commands.ARG_SEPARATOR.getStr() +
+                                            passFld.getText().hashCode();
                    break;
                }
             } else if (result.get() == buttonRegistration) {
@@ -155,7 +144,13 @@ public class DialogWindows {
             if (result.get() == buttonOk) {
                 if (checkEnteredData(nickTxtFld.getText(), loginTxtFld.getText(), passFld.getText(), lang)){
                     alertWindow(Phrases.ALERT.value(lang), Phrases.AFTER_REGISTER_MSG.value(lang), "");
-                    answer += reg_cmd + cmdSepar + nickTxtFld + strSepar + loginLbl + strSepar + passFld.getText().hashCode();
+                    answer += Commands.REGISTRATION.getStr() +
+                                Commands.CMD_SEPARATOR.getStr() +
+                                    nickTxtFld +
+                                        Commands.ARG_SEPARATOR.getStr() +
+                                            loginLbl +
+                                                Commands.ARG_SEPARATOR.getStr() +
+                                                    passFld.getText().hashCode();
                     break;
                 }
             } else if (result.get() == buttonCancel) {
@@ -167,14 +162,14 @@ public class DialogWindows {
 
     private boolean checkEnteredData(String nick, String login, String password, byte lang) {
         String alarm = "";
-        if (nick.contains(" ") || nick.length() < minNickLenght) {
-            alarm += "wrong data in field Nick" + "\n";
+        if (nick.contains(" ") || nick.length() < DgtlConsts.MIN_NICK_LENTH.value()) {
+            alarm += Phrases.WRONG_DATA.value(lang) + Phrases.NICK.value(lang) + StrConsts.END_LINE.getStr();
         }
-        if (login.contentEquals("@.") || login.length() < minLoginPasswordLenth) {
-            alarm += "wrong data in field Login"  + "\n";
+        if (login.contentEquals("@.") || login.length() < DgtlConsts.MIN_LOGPASS_LEN.value()) {
+            alarm += Phrases.WRONG_DATA.value(lang) + Phrases.LOGIN.value(lang) + StrConsts.END_LINE.getStr();
         }
-        if (password.contentEquals("./,*&^%$#@!)(=+") || password.length() < minLoginPasswordLenth) {
-            alarm += "wrong data in field Password";
+        if (password.contentEquals("./,*&^%$#@!)(=+") || password.length() < DgtlConsts.MIN_LOGPASS_LEN.value()) {
+            alarm += Phrases.WRONG_DATA.value(lang) + Phrases.PASSWORD.value(lang);
         }
 
         if (alarm.length() > 1) {

@@ -53,7 +53,7 @@ public class ChatClient {
 
     public void sendMessage(String message){
         try {
-//            System.out.println(message + " in send message");
+            System.out.println(message + " in send message");
             if (!message.isEmpty()) {
                 this.participant.sendMessage(message);
             }

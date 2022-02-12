@@ -16,10 +16,19 @@ public class ClientHandler {
         this.nick = null;
         this.chatServer = chatServer;
         this.participant = new ChatParticipant(serverSocket);
+        System.out.println("Client-->[" + this + "] AUTH");
         Thread current =  new Thread(() -> {
             if (authentication()) {
                 listeningNet();
+            } else {
+                sendMessage(Commands.ERROR.getStr() + Commands.ARG_SEPARATOR.getStr() + Phrases.TIME_EXPIRED.ordinal());
+                try {
+                    this.participant.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+            System.out.println("Client-->[" + this + "] LOGOUT");
         });
         current.setDaemon(true);
         current.start();
@@ -27,25 +36,31 @@ public class ClientHandler {
 
     private boolean authentication() {
         try {
-            while (nick == null) {
-                final String message = this.participant.readMessage();
-                this.nick = chatServer.distribution(message);
+            AuthGerasTimer t = new AuthGerasTimer(120);
+            Thread timer = new Thread(t);
+            timer.setDaemon(true);
+            timer.start();
+            while (nick == null && t.getFlag()) {
+                System.out.println("Timer = " + t.getTime() + t.getFlag());
+                this.nick = chatServer.distribution(this.participant.readMessage());
                 if (!chatServer.subscribe(this)) {
-                    participant.sendMessage(Commands.ERROR.getStr() + Commands.ARG_SEPARATOR.getStr() + Phrases.WRONG_AUTH.ordinal());
+                    participant.sendMessage(Commands.ERROR.getStr() +
+                                                Commands.ARG_SEPARATOR.getStr() +
+                                                    Phrases.WRONG_AUTH.ordinal());
                     this.nick = null;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.sendMessage(Commands.AUTH_IN.getStr() + Commands.ARG_SEPARATOR.getStr() + this.nick);
-        chatServer.sendUserList();
         return (this.nick != null);
     }
 
 
     private void listeningNet() {
         try {
+            this.sendMessage(Commands.AUTH_IN.getStr() + Commands.ARG_SEPARATOR.getStr() + this.nick);
+            chatServer.sendUserList();
             while (this.participant.connectionActive()) {
                 System.out.println("listening net");
                 final String message = this.participant.readMessage();
@@ -53,6 +68,7 @@ public class ClientHandler {
                     chatServer.distribution(message);
                 }
             }
+            this.participant.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

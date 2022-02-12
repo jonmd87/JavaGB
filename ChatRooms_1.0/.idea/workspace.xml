@@ -7,33 +7,17 @@
     <list default="true" id="d6787dae-f9c5-40a1-958a-929bb61a0039" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/ButtonsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/ButtonsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/ChatParticipant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/ChatParticipant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/ChatRoomApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/ChatRoomApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/DialogWindows.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/DialogWindows.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Buttons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Commands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Phrases.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Phrases.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/Helper/StrConsts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/Helper/StrConsts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ChatClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientAUTH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientAUTH.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientBroadcast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientBroadcast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientERROR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientERROR.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientLogout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientLogout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUpdateUsrList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUpdateUsrList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ChatServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/BroadcastHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/BroadcastHandlerServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/LogoutHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/LogoutHandlerServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ru/gb/gerasimenko/chatroom/BlaBlaRoom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ru/gb/gerasimenko/chatroom/BlaBlaRoom.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/BlaBlaRoom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/BlaBlaRoom.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/ButtonsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/ButtonsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/DialogWindows.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/DialogWindows.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/Helper/Buttons.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/Helper/Buttons.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/client/ChatClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/client/ChatClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientAUTH.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientAUTH.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientLogout.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientLogout.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUpdateUsrList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUpdateUsrList.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +82,20 @@
       <recent name="ru.gb.gerasimenko.chatroom" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerStarting">
+  <component name="RunManager" selected="Application.AuthGerasTimer">
+    <configuration name="AuthGerasTimer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.chatroom.server.AuthGerasTimer" />
+      <module name="chatRoom" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.gb.gerasimenko.chatroom.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServerRequestHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.chatroom.server.ServerHandlers.ServerRequestHandler" />
       <module name="chatRoom" />
@@ -164,6 +161,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="client4" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.chatroom.ChatRoomApplication" />
+      <module name="chatRoom" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.gb.gerasimenko.chatroom.Interfaces.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -178,14 +188,17 @@
     <list>
       <item itemvalue="Application.client2" />
       <item itemvalue="Application.client3" />
+      <item itemvalue="Application.client4" />
       <item itemvalue="Application.client1" />
       <item itemvalue="Application.ServerStarting" />
       <item itemvalue="Application.ServerRequestHandler" />
+      <item itemvalue="Application.AuthGerasTimer" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.client1" />
         <item itemvalue="Application.ServerStarting" />
+        <item itemvalue="Application.AuthGerasTimer" />
+        <item itemvalue="Application.client1" />
         <item itemvalue="Application.ServerRequestHandler" />
       </list>
     </recent_temporary>
@@ -219,11 +232,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerHandlers/ServerRequestHandlerAuth.java</url>
           <line>27</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientHandlers/ClientRequestHandlerUpdateList.java</url>

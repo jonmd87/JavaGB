@@ -1,6 +1,5 @@
 package ru.gb.gerasimenko.chatroom.client.ClientRequestHandler;
 
-import ru.gb.gerasimenko.chatroom.Helper.Commands;
 import ru.gb.gerasimenko.chatroom.Interfaces.RequestHandler_Client;
 import ru.gb.gerasimenko.chatroom.client.ChatClient;
 
