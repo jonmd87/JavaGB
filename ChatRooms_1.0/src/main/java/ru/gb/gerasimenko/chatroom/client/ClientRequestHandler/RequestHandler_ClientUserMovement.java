@@ -7,7 +7,7 @@ import ru.gb.gerasimenko.chatroom.client.ChatClient;
 
 public class RequestHandler_ClientUserMovement implements RequestHandler_Client {
     @Override
-    public String handler(String data, ChatClient client) {
+    public void handler(String data, ChatClient client) {
         System.out.println("USERMOVE |" + data + "|");
         String[] split = dataToStringArray(data, Commands.STR_SEPARATOR.getStr());
         String message;
@@ -15,6 +15,5 @@ public class RequestHandler_ClientUserMovement implements RequestHandler_Client 
         message = split[0] + Phrases.values()[index].value(client.getButtonsController().getLang());
         System.out.println("message =" + message);
         client.getButtonsController().addMessage(message);
-        return null;
     }
 }

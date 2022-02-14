@@ -5,10 +5,9 @@ import ru.gb.gerasimenko.chatroom.client.ChatClient;
 
 public class RequestHandler_ClientBroadcast implements RequestHandler_Client {
     @Override
-    public String handler(String data, ChatClient client) {
+    public void handler(String data, ChatClient client) {
         System.out.println("in broadcat " + data + "|");
         System.out.println("data =" + data + "|");
         client.getButtonsController().addMessage(data);
-        return null;
     }
 }
