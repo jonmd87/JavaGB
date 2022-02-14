@@ -2,7 +2,9 @@ package ru.gb.gerasimenko.chatroom.server;
 
 import ru.gb.gerasimenko.chatroom.ChatParticipant;
 import ru.gb.gerasimenko.chatroom.Helper.Commands;
+import ru.gb.gerasimenko.chatroom.Helper.DgtlConsts;
 import ru.gb.gerasimenko.chatroom.Helper.Phrases;
+import ru.gb.gerasimenko.chatroom.Helper.StrConsts;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -16,19 +18,22 @@ public class ClientHandler {
         this.nick = null;
         this.chatServer = chatServer;
         this.participant = new ChatParticipant(serverSocket);
-        System.out.println("Client-->[" + this + "] AUTH");
+        System.out.println("Client-->[" + this.hashCode() + "] AUTH");
         Thread current =  new Thread(() -> {
             if (authentication()) {
                 listeningNet();
             } else {
                 sendMessage(Commands.ERROR.getStr() + Commands.ARG_SEPARATOR.getStr() + Phrases.TIME_EXPIRED.ordinal());
+            }
+            if (participant.connectionActive()) {
                 try {
-                    this.participant.close();
+                    participant.sendMessage(Commands.LOGOUT.getStr() + Commands.ARG_SEPARATOR.getStr() + StrConsts.END_LINE.getStr());
+                    participant.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            System.out.println("Client-->[" + this + "] LOGOUT");
+            System.out.println("Client-->[" + this.hashCode() + "] LOGOUT");
         });
         current.setDaemon(true);
         current.start();
@@ -36,12 +41,12 @@ public class ClientHandler {
 
     private boolean authentication() {
         try {
-            AuthGerasTimer t = new AuthGerasTimer(120);
-            Thread timer = new Thread(t);
-            timer.setDaemon(true);
-            timer.start();
-            while (nick == null && t.getFlag()) {
-                System.out.println("Timer = " + t.getTime() + t.getFlag());
+            AuthorizationTimer timer = new AuthorizationTimer(DgtlConsts.SEC_120.value());
+            Thread timerThread = new Thread(timer);
+            timerThread.setDaemon(true);
+            timerThread.start();
+            while (nick == null && timer.getFlag()) {
+                System.out.println("Timer = " + timer.getTime() + timer.getFlag());
                 this.nick = chatServer.distribution(this.participant.readMessage());
                 if (!chatServer.subscribe(this)) {
                     participant.sendMessage(Commands.ERROR.getStr() +
@@ -50,6 +55,8 @@ public class ClientHandler {
                     this.nick = null;
                 }
             }
+            System.out.println("timer = " + timer.getTime() + " " + timer.getFlag());
+            timer.blockTimer();
         } catch (IOException e) {
             e.printStackTrace();
         }

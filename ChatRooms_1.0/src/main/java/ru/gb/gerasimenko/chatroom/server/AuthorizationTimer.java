@@ -1,11 +1,11 @@
 package ru.gb.gerasimenko.chatroom.server;
 
-public class AuthGerasTimer implements Runnable{
+public class AuthorizationTimer implements Runnable{
     private Boolean flag;
     private Integer time;
     private final Integer millies;
 
-    public AuthGerasTimer(Integer seconds) {
+    public AuthorizationTimer(Integer seconds) {
         this.millies = 1000;
         this.time = seconds * this.millies;
         this.flag = true;
@@ -22,18 +22,16 @@ public class AuthGerasTimer implements Runnable{
                 e.printStackTrace();
             }
         }
-        invertFlag();
+        blockTimer();
     }
 
 
-    private void invertFlag() {
+    public void blockTimer() {
         this.flag = false;
     }
-
     public synchronized Boolean getFlag() {
         return this.flag;
     }
-
     public synchronized Integer getTime() {
         return time;
     }

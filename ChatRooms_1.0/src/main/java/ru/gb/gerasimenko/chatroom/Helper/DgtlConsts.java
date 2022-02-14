@@ -5,7 +5,7 @@ public  enum DgtlConsts {
     PADDING(10),
     MIN_NICK_LENTH(3),
     MIN_LOGPASS_LEN(3),
-    TIME_FOR_AUTHORISATION(120000);
+    SEC_120(20);  // in release change to 120 seconds
 
 
     private int digit;

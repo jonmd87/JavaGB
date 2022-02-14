@@ -129,9 +129,9 @@ public class ButtonsController {
 
     public void onSingOutClick(ActionEvent actionEvent) {
         if (dialogWindows.exitWindow(lang)) {
-            String answer = Commands.LOGOUT.getStr() + Commands.CMD_SEPARATOR.getStr() +
-                    chatClient.getNick();
-            chatClient.sendMessage(answer);
+            chatClient.sendMessage(Commands.LOGOUT.getStr() +
+                                    Commands.CMD_SEPARATOR.getStr() +
+                                        chatClient.getNick());
             this.setAuth();
             generalTextArea.clear();
             listView.getItems().clear();
