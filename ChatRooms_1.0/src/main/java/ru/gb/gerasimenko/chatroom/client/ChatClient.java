@@ -64,10 +64,10 @@ public class ChatClient {
 
     private void initHandler() {
         this.handler.put(Commands.AUTH_IN.getStr(), new RequestHandler_ClientAUTH());
-        this.handler.put(Commands.UPDATE_USERLIST.getStr(), new RequestHandler_ClientUpdateUsrList());
+        this.handler.put(Commands.UPDATE_USERS_LIST.getStr(), new RequestHandler_ClientUpdateUsrList());
         this.handler.put(Commands.LOGOUT.getStr(), new RequestHandler_ClientLogout());
         this.handler.put(Commands.BROADCAST.getStr(), new RequestHandler_ClientBroadcast());
-        this.handler.put(Commands.ERROR.getStr(), new RequestHandler_ClientERROR());
+        this.handler.put(Commands.NOTIFICATION.getStr(), new RequestHandler_ClientNOTIFICATION());
         this.handler.put(Commands.USER_MOVEMENTS.getStr(), new RequestHandler_ClientUserMovement());
     }
 

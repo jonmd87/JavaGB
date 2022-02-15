@@ -1,4 +1,4 @@
-package ru.gb.gerasimenko.chatroom.server.ServerRequestHandlers;
+package ru.gb.gerasimenko.chatroom.server;
 
 public class AuthorizationTimer implements Runnable{
     private Boolean flag;

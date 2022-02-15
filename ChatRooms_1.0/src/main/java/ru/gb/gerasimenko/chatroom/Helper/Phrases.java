@@ -2,6 +2,7 @@ package ru.gb.gerasimenko.chatroom.Helper;
 
 public enum Phrases {
     ALERT("Alert", "Внимание"),
+    CHANGED_NICK("User changed nick ", "Пользователь изменил ник"),
     TIME_EXPIRED("Time for authorization has expired.", "Время для авторизации истекло"),
     ENTERED_IN_CHAT(" Entered in chat.", " Вошел в чат."),
     RECIPIENTS("Recipients", "Получатели"),

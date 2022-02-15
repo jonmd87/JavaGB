@@ -4,16 +4,16 @@ public enum Commands {
     CMD_SEPARATOR("###"),
     ARG_SEPARATOR("@@@"),
     STR_SEPARATOR("&&&"),
-    TARGED_DELIVERY("/targ_delivery"),
-    UPDATE_USERLIST("/update_userList"),
+    TARGET_DELIVERY("/targ_delivery"),
+    UPDATE_USERS_LIST("/update_userList"),
     USER_MOVEMENTS("/user_movements"),
-    REGISTRATION("/registration"),
-    DELETE_ACCOUNT("/delete_account"),
     AUTH_IN("/auth_in"),
     LOGOUT("/end"),
-    SEND_TO("/sendTO"),
-    ERROR("/error"),
-    BROADCAST("/Broadcast");
+    NOTIFICATION("/notification"),
+    BROADCAST("/Broadcast"),
+    DB_REGISTER("/DB_registration"), //CMD+nick+login+password,
+    DB_UPDATE_NICK("/DB_update_login"),
+    ;
 
     private String commands;
 

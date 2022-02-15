@@ -5,7 +5,6 @@ import ru.gb.gerasimenko.chatroom.Helper.Commands;
 import ru.gb.gerasimenko.chatroom.Helper.DgtlConsts;
 import ru.gb.gerasimenko.chatroom.Helper.Phrases;
 import ru.gb.gerasimenko.chatroom.Helper.StrConsts;
-import ru.gb.gerasimenko.chatroom.server.ServerRequestHandlers.AuthorizationTimer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -24,11 +23,16 @@ public class ClientHandler {
             if (authentication()) {
                 listeningNet();
             } else {
-                sendMessage(Commands.ERROR.getStr() + Commands.ARG_SEPARATOR.getStr() + Phrases.TIME_EXPIRED.ordinal());
+                sendMessage(Commands.NOTIFICATION.getStr() +
+                                Commands.ARG_SEPARATOR.getStr() +
+                                    Phrases.TIME_EXPIRED.ordinal() +
+                                        Commands.STR_SEPARATOR.getStr() + "");
             }
             if (participant.connectionActive()) {
                 try {
-                    participant.sendMessage(Commands.LOGOUT.getStr() + Commands.ARG_SEPARATOR.getStr() + StrConsts.END_LINE.getStr());
+                    participant.sendMessage(Commands.LOGOUT.getStr() +
+                                                Commands.ARG_SEPARATOR.getStr() +
+                                                    StrConsts.END_LINE.getStr());
                     participant.close();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -50,7 +54,7 @@ public class ClientHandler {
                 System.out.println("Timer = " + timer.getTime() + timer.getFlag());
                 this.nick = chatServer.distribution(this.participant.readMessage());
                 if (!chatServer.subscribe(this)) {
-                    participant.sendMessage(Commands.ERROR.getStr() +
+                    participant.sendMessage(Commands.NOTIFICATION.getStr() +
                                                 Commands.ARG_SEPARATOR.getStr() +
                                                     Phrases.WRONG_AUTH.ordinal());
                     this.nick = null;
@@ -67,7 +71,8 @@ public class ClientHandler {
 
     private void listeningNet() {
         try {
-            this.sendMessage(Commands.AUTH_IN.getStr() + Commands.ARG_SEPARATOR.getStr() + this.nick);
+            this.sendMessage(Commands.AUTH_IN.getStr() +
+                                Commands.ARG_SEPARATOR.getStr() + this.nick);
             chatServer.sendUserList();
             while (this.participant.connectionActive()) {
                 System.out.println("listening net");
@@ -94,6 +99,10 @@ public class ClientHandler {
 
     public String getNick() {
         return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
     public ChatParticipant getParticipant() {
