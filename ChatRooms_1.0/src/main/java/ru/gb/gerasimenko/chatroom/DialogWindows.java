@@ -144,7 +144,7 @@ public class DialogWindows {
             if (result.get() == buttonOk) {
                 if (checkEnteredData(nickTxtFld.getText(), loginTxtFld.getText(), passFld.getText(), lang)){
                     alertWindow(Phrases.ALERT.value(lang), Phrases.AFTER_REGISTER_MSG.value(lang), "");
-                    answer += Commands.REGISTRATION.getStr() +
+                    answer += Commands.DB_REGISTER.getStr() +
                                 Commands.CMD_SEPARATOR.getStr() +
                                     nickTxtFld +
                                         Commands.ARG_SEPARATOR.getStr() +
@@ -223,7 +223,7 @@ public class DialogWindows {
                 break;
             } else if (res.get() == buttonSend && !txtFld.getText().isEmpty() &&
                                     checkFieldSendTo(data, sendtoFld.getText())) {
-                final String message = Commands.TARGED_DELIVERY.getStr() +
+                final String message = Commands.TARGET_DELIVERY.getStr() +
                                         Commands.CMD_SEPARATOR.getStr() + author + " " + txtFld.getText() +
                                             Commands.ARG_SEPARATOR.getStr() + author + Commands.STR_SEPARATOR.getStr() +
                                                 sendtoFld.getText().replaceAll(StrConsts.COMMA.getStr(), Commands.STR_SEPARATOR.getStr());

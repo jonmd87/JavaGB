@@ -14,6 +14,7 @@ import java.util.Map;
 
 public class ChatServer {
     private final HashMap<String, ClientHandler> clients;
+    private final DataBaseConnection dataBase = new DataBaseConnection();
     private final Map<String, ServerRequestHandler> handler;
 
     public ChatServer() {
@@ -38,7 +39,7 @@ public class ChatServer {
         String[] split = message.split(Commands.CMD_SEPARATOR.getStr());
         final ServerRequestHandler tempHandler = handler.get(split[0]);
         System.out.println("incoming " + message);
-        System.out.println("distribution throw [" + split[1]+ "]");
+        System.out.println("distribution throw [" + split[1] + "]");
         return tempHandler.handler(split[1], this);
     }
 
@@ -49,11 +50,11 @@ public class ChatServer {
         }
         clients.put(nick, newClient);
         String message = Commands.BROADCAST.getStr() +
-                            Commands.CMD_SEPARATOR.getStr() +
-                                        Commands.USER_MOVEMENTS.getStr() +
-                                            Commands.ARG_SEPARATOR.getStr() +
-                                                nick + Commands.STR_SEPARATOR.getStr() +
-                                                    Phrases.ENTERED_IN_CHAT.ordinal();
+                Commands.CMD_SEPARATOR.getStr() +
+                Commands.USER_MOVEMENTS.getStr() +
+                Commands.ARG_SEPARATOR.getStr() +
+                nick + Commands.STR_SEPARATOR.getStr() +
+                Phrases.ENTERED_IN_CHAT.ordinal();
         this.distribution(message);
         return true;
     }
@@ -62,39 +63,47 @@ public class ChatServer {
         clients.remove(nick);
         if (clients.size() > 0) {
             String message = Commands.BROADCAST.getStr() +
-                                Commands.CMD_SEPARATOR.getStr() +
-                                            Commands.USER_MOVEMENTS.getStr() +
-                                                 Commands.ARG_SEPARATOR.getStr() +
-                                                    nick + Commands.STR_SEPARATOR.getStr() +
-                                                        Phrases.LEAVE_CHAT.ordinal();
+                    Commands.CMD_SEPARATOR.getStr() +
+                    Commands.USER_MOVEMENTS.getStr() +
+                    Commands.ARG_SEPARATOR.getStr() +
+                    nick + Commands.STR_SEPARATOR.getStr() +
+                    Phrases.LEAVE_CHAT.ordinal();
             this.distribution(message);
         }
     }
 
     public void sendUserList() {
-     if (clients.size() > 0) {
-         System.out.println(clients.size());
-         String data = Commands.BROADCAST.getStr() +
-                            Commands.CMD_SEPARATOR.getStr() +
-                                Commands.UPDATE_USERLIST.getStr() +
-                                    Commands.ARG_SEPARATOR.getStr();
-         for (String s : clients.keySet()) {
-             data += s + Commands.STR_SEPARATOR.getStr();
-         }
-         distribution(data);
-     }
+        if (clients.size() > 0) {
+            System.out.println(clients.size());
+            String data = Commands.BROADCAST.getStr() +
+                    Commands.CMD_SEPARATOR.getStr() +
+                    Commands.UPDATE_USERS_LIST.getStr() +
+                    Commands.ARG_SEPARATOR.getStr();
+            for (String s : clients.keySet()) {
+                data += s + Commands.STR_SEPARATOR.getStr();
+            }
+            distribution(data);
+        }
+    }
+
+    private void initHandlers() {
+        handler.put(Commands.AUTH_IN.getStr(), new AuthenticationHandlerServer());
+        handler.put(Commands.BROADCAST.getStr(), new BroadcastHandlerServer());
+        handler.put(Commands.DB_REGISTER.getStr(), new DbRegistration());
+        handler.put(Commands.DB_UPDATE_NICK.getStr(), new DbUpdateNick());
+        handler.put(Commands.LOGOUT.getStr(), new LogoutHandlerServer());
+        handler.put(Commands.TARGET_DELIVERY.getStr(), new TargetedDeliveryHandlerServer());
     }
 
     public HashMap<String, ClientHandler> getClients() {
         return clients;
     }
 
-    private void initHandlers() {
-        handler.put(Commands.REGISTRATION.getStr(), new RegistrationHandlerServer());
-        handler.put(Commands.DELETE_ACCOUNT.getStr(), new DeleteAccountHandlerServer());
-        handler.put(Commands.AUTH_IN.getStr(), new AuthenticationHandlerServer());
-        handler.put(Commands.LOGOUT.getStr(), new LogoutHandlerServer());
-        handler.put(Commands.BROADCAST.getStr(), new BroadcastHandlerServer());
-        handler.put(Commands.TARGED_DELIVERY.getStr(), new TargetedDeliveryHandlerServer());
+    public Map<String, ServerRequestHandler> getHandler() {
+        return handler;
+    }
+
+    public DataBaseConnection getDataBase() {
+        return dataBase;
     }
 }

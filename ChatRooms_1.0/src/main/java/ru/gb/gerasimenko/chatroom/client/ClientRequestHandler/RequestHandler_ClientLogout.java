@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class RequestHandler_ClientLogout implements RequestHandler_Client {
     @Override
-    public String handler(String data, ChatClient client) {
+    public void handler(String data, ChatClient client) {
         try {
             client.setNick(null);
             client.getParticipant().close();
@@ -15,6 +15,5 @@ public class RequestHandler_ClientLogout implements RequestHandler_Client {
             System.out.println("in RequestHandler_ClientLogout");
             e.printStackTrace();
         }
-        return null;
     }
 }
