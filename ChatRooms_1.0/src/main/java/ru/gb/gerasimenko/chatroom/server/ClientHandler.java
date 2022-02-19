@@ -12,6 +12,7 @@ import java.net.ServerSocket;
 public class ClientHandler {
     private ChatServer chatServer;
     private ChatParticipant participant;
+    private HistoryControl historyControl;
     private String nick;
 
     public ClientHandler(ChatServer chatServer, ServerSocket serverSocket) {
@@ -56,7 +57,8 @@ public class ClientHandler {
                 if (!chatServer.subscribe(this)) {
                     participant.sendMessage(Commands.NOTIFICATION.getStr() +
                                                 Commands.ARG_SEPARATOR.getStr() +
-                                                    Phrases.WRONG_AUTH.ordinal());
+                                                    Phrases.WRONG_AUTH.ordinal() +
+                                                       Commands.STR_SEPARATOR.getStr() + " ");
                     this.nick = null;
                 }
             }
@@ -71,9 +73,7 @@ public class ClientHandler {
 
     private void listeningNet() {
         try {
-            this.sendMessage(Commands.AUTH_IN.getStr() +
-                                Commands.ARG_SEPARATOR.getStr() + this.nick);
-            chatServer.sendUserList();
+            sendInitializationData();
             while (this.participant.connectionActive()) {
                 System.out.println("listening net");
                 final String message = this.participant.readMessage();
@@ -85,6 +85,17 @@ public class ClientHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void sendInitializationData() {
+        this.sendMessage(Commands.AUTH_IN.getStr() +
+                Commands.ARG_SEPARATOR.getStr() + this.nick);
+        this.historyControl = new HistoryControl(this.nick);
+        chatServer.sendUserList();
+        this.sendMessage(Commands.BROADCAST.getStr() +
+                            Commands.ARG_SEPARATOR +
+                                this.historyControl.getLastLines());
+
     }
 
     public void sendMessage(String message) {
@@ -103,6 +114,10 @@ public class ClientHandler {
 
     public void setNick(String nick) {
         this.nick = nick;
+    }
+
+    public HistoryControl getHistoryControl() {
+        return historyControl;
     }
 
     public ChatParticipant getParticipant() {

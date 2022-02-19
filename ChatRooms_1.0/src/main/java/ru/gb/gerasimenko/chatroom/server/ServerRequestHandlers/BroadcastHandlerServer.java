@@ -9,6 +9,7 @@ public class BroadcastHandlerServer implements ServerRequestHandler {
     public String handler(String data, ChatServer server) {
         System.out.println("BRDCST [" + data + "]");
         for (ClientHandler client : server.getClients().values()) {
+            client.getHistoryControl().writeInHistoryFile(data);
             client.sendMessage(data);
         }
         return null;

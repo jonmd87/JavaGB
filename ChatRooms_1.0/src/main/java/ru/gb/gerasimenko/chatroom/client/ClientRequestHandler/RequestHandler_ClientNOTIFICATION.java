@@ -8,6 +8,7 @@ import ru.gb.gerasimenko.chatroom.client.ChatClient;
 public class RequestHandler_ClientNOTIFICATION implements RequestHandler_Client {
     @Override
     public void handler(String data, ChatClient client) {
+//        incoming data = [0] = error message ;[1] = additionally message
         System.out.println("NOTIFICATIONdata" + data);
         String[] split = data.split(Commands.STR_SEPARATOR.getStr());
         byte lang = client.getButtonsController().getLang();

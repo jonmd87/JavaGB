@@ -7,6 +7,8 @@ public enum StrConsts {
     SERV_WAITNG("The server is waiting ..."),
     COMMA(","),
     END_LINE("\n"),
+    HISTORY_PATH("chat_history"),
+    TXT(".txt"),
     SESSION_CLOSED("Session closed.");
 
 
