@@ -74,4 +74,14 @@ public class HistoryControl {
             }
         }
     }
+
+    public void closeStreams() {
+        try {
+            this.output.flush();
+            this.input.close();
+            this.output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
