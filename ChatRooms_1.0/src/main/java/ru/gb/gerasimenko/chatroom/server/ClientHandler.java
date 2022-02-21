@@ -19,7 +19,6 @@ public class ClientHandler {
         this.nick = null;
         this.chatServer = chatServer;
         this.participant = new ChatParticipant(serverSocket);
-        System.out.println("Client-->[" + this.hashCode() + "] AUTH");
         Thread current =  new Thread(() -> {
             if (authentication()) {
                 listeningNet();
@@ -39,7 +38,6 @@ public class ClientHandler {
                     e.printStackTrace();
                 }
             }
-            System.out.println("Client-->[" + this.hashCode() + "] LOGOUT");
         });
         current.setDaemon(true);
         current.start();
@@ -52,7 +50,6 @@ public class ClientHandler {
             timerThread.setDaemon(true);
             timerThread.start();
             while (nick == null && timer.getFlag()) {
-                System.out.println("Timer = " + timer.getTime() + timer.getFlag());
                 this.nick = chatServer.distribution(this.participant.readMessage());
                 if (!chatServer.subscribe(this)) {
                     participant.sendMessage(Commands.NOTIFICATION.getStr() +
@@ -62,7 +59,6 @@ public class ClientHandler {
                     this.nick = null;
                 }
             }
-            System.out.println("timer = " + timer.getTime() + " " + timer.getFlag());
             timer.blockTimer();
         } catch (IOException e) {
             e.printStackTrace();
