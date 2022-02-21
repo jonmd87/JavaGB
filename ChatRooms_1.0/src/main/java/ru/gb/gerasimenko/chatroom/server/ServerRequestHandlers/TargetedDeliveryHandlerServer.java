@@ -10,7 +10,7 @@ public class TargetedDeliveryHandlerServer implements ServerRequestHandler {
         System.out.println("TARGET |" + data + "|");
         String[] split = data.split(Commands.ARG_SEPARATOR.getStr());
         for (String s : split[1].split(Commands.STR_SEPARATOR.getStr())) {
-            System.out.println(server.getClients().get(s).getNick());
+            server.getClients().get(s).getHistoryControl().writeInHistoryFile(split[0]);
             server.getClients().get(s).sendMessage(Commands.BROADCAST.getStr()
                                     + Commands.ARG_SEPARATOR.getStr() + split[0]);
         }

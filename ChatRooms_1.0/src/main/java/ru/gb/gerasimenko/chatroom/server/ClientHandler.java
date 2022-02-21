@@ -12,13 +12,13 @@ import java.net.ServerSocket;
 public class ClientHandler {
     private ChatServer chatServer;
     private ChatParticipant participant;
+    private HistoryControl historyControl;
     private String nick;
 
     public ClientHandler(ChatServer chatServer, ServerSocket serverSocket) {
         this.nick = null;
         this.chatServer = chatServer;
         this.participant = new ChatParticipant(serverSocket);
-        System.out.println("Client-->[" + this.hashCode() + "] AUTH");
         Thread current =  new Thread(() -> {
             if (authentication()) {
                 listeningNet();
@@ -38,7 +38,6 @@ public class ClientHandler {
                     e.printStackTrace();
                 }
             }
-            System.out.println("Client-->[" + this.hashCode() + "] LOGOUT");
         });
         current.setDaemon(true);
         current.start();
@@ -51,16 +50,15 @@ public class ClientHandler {
             timerThread.setDaemon(true);
             timerThread.start();
             while (nick == null && timer.getFlag()) {
-                System.out.println("Timer = " + timer.getTime() + timer.getFlag());
                 this.nick = chatServer.distribution(this.participant.readMessage());
                 if (!chatServer.subscribe(this)) {
                     participant.sendMessage(Commands.NOTIFICATION.getStr() +
                                                 Commands.ARG_SEPARATOR.getStr() +
-                                                    Phrases.WRONG_AUTH.ordinal());
+                                                    Phrases.WRONG_AUTH.ordinal() +
+                                                       Commands.STR_SEPARATOR.getStr() + " ");
                     this.nick = null;
                 }
             }
-            System.out.println("timer = " + timer.getTime() + " " + timer.getFlag());
             timer.blockTimer();
         } catch (IOException e) {
             e.printStackTrace();
@@ -71,9 +69,7 @@ public class ClientHandler {
 
     private void listeningNet() {
         try {
-            this.sendMessage(Commands.AUTH_IN.getStr() +
-                                Commands.ARG_SEPARATOR.getStr() + this.nick);
-            chatServer.sendUserList();
+            sendInitializationData();
             while (this.participant.connectionActive()) {
                 System.out.println("listening net");
                 final String message = this.participant.readMessage();
@@ -85,6 +81,17 @@ public class ClientHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void sendInitializationData() {
+        this.sendMessage(Commands.AUTH_IN.getStr() +
+                Commands.ARG_SEPARATOR.getStr() + this.nick);
+        this.historyControl = new HistoryControl(this.nick);
+        chatServer.sendUserList();
+        this.sendMessage(Commands.BROADCAST.getStr() +
+                            Commands.ARG_SEPARATOR +
+                                this.historyControl.getLastLines());
+
     }
 
     public void sendMessage(String message) {
@@ -103,6 +110,10 @@ public class ClientHandler {
 
     public void setNick(String nick) {
         this.nick = nick;
+    }
+
+    public HistoryControl getHistoryControl() {
+        return historyControl;
     }
 
     public ChatParticipant getParticipant() {

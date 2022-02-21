@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6787dae-f9c5-40a1-958a-929bb61a0039" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/DataBaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/DataBaseHandler/DataBaseHandlers.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ChatServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ClientHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,32 +72,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.client1">
-    <configuration name="AuthorizationTimer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.chatroom.server.ServerRequestHandlers.AuthorizationTimer" />
-      <module name="chatRoom" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.gb.gerasimenko.chatroom.server.ServerRequestHandlers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServerRequestHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.chatroom.server.ServerHandlers.ServerRequestHandler" />
-      <module name="chatRoom" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.gb.gerasimenko.chatroom.server.ServerHandlers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServerStarting" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.chatroom.server.ServerStarting" />
       <module name="chatRoom" />
@@ -184,15 +154,11 @@
       <item itemvalue="Application.client4" />
       <item itemvalue="Application.client1" />
       <item itemvalue="Application.ServerStarting" />
-      <item itemvalue="Application.ServerRequestHandler" />
-      <item itemvalue="Application.AuthorizationTimer" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.client1" />
         <item itemvalue="Application.ServerStarting" />
-        <item itemvalue="Application.AuthorizationTimer" />
-        <item itemvalue="Application.ServerRequestHandler" />
       </list>
     </recent_temporary>
   </component>
