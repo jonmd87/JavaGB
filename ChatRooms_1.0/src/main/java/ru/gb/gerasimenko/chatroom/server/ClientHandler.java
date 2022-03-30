@@ -90,7 +90,7 @@ public class ClientHandler {
         chatServer.sendUserList();
         this.sendMessage(Commands.BROADCAST.getStr() +
                             Commands.ARG_SEPARATOR +
-                                this.historyControl.getLastLines());
+                                this.historyControl.getHistory());
 
     }
 

@@ -5,51 +5,40 @@ import ru.gb.gerasimenko.chatroom.Helper.DgtlConsts;
 import ru.gb.gerasimenko.chatroom.Helper.StrConsts;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class HistoryControl {
-    private String nick;
-    private String file;
-    private BufferedInputStream input;
-    private BufferedOutputStream output;
+    private final String file;
+    private Writer writer;
 
     public HistoryControl(String nick) {
-        this.nick = nick;
         this.file = StrConsts.HISTORY_PATH.getStr() + File.separator + nick + StrConsts.TXT.getStr();
         createHistoryFile();
         initFileStreams();
     }
 
-    public String getLastLines() {
-        try {
-            String mess = new String(this.input.readAllBytes(), StandardCharsets.UTF_8);
-            return pullMessages(Arrays.asList(mess.split(StrConsts.END_LINE.getStr())));
+    public String getHistory() {
+        final List<String> list = new LinkedList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(this.file))) {
+            String temp;
+            while ((temp = reader.readLine()) != null) {
+                list.add(temp);
+                if (list.size() > DgtlConsts.HUNDRED.value()) {
+                    list.remove(0);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
-    }
-
-    private String pullMessages(List<String> list) {
-        String lastMsg = "";
-        int length = DgtlConsts.HUNDRED.value();
-        if (list.size() > 0) {
-            list = (list.size() > length) ? list.subList(list.size() - length, list.size()) : list;
-            for (String s : list) {
-                lastMsg += s + StrConsts.END_LINE.getStr();
-            }
-
-        }
-        return lastMsg;
+        return String.join(StrConsts.END_LINE.getStr(), list);
     }
 
     public void writeInHistoryFile(String data) {
         try {
-            this.output.write(data.getBytes(StandardCharsets.UTF_8));
+            this.writer.write(data + StrConsts.END_LINE.getStr());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,9 +47,8 @@ public class HistoryControl {
 
     private void initFileStreams() {
         try {
-            this.input = new BufferedInputStream(new FileInputStream(file));
-            this.output = new BufferedOutputStream(new FileOutputStream(file, true));
-        } catch (FileNotFoundException e) {
+            this.writer = new BufferedWriter(new FileWriter(file, true));
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -75,11 +63,9 @@ public class HistoryControl {
         }
     }
 
-    public void closeStreams() {
+    public void close() {
         try {
-            this.output.flush();
-            this.input.close();
-            this.output.close();
+            this.writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

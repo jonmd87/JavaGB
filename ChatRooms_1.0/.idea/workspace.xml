@@ -7,6 +7,8 @@
     <list default="true" id="d6787dae-f9c5-40a1-958a-929bb61a0039" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/HistoryControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/HistoryControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../level_3/Lesson4/src/main/java/ru/gb/gerasimenko/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/../level_3/Lesson4/src/main/java/ru/gb/gerasimenko/Task.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
