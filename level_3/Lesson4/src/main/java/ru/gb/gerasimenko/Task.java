@@ -19,7 +19,7 @@ public class Task {
         service.shutdown();
     }
 
-    public void printLetter(Character ch) {
+    public void printLetter(char ch) {
         synchronized (monitor) {
             try {
                 for (int i = 0; i < 5; i++) {
