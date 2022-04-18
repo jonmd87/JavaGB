@@ -26,6 +26,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUserMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUserMovement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ChatServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ClientHandler.java" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/DataBaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/HistoryControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/HistoryControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.java" afterDir="false" />
@@ -74,6 +75,10 @@
       <change beforePath="$PROJECT_DIR$/../level_3/Lesson3/target/classes/db.changelocg-master.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../level_3/Lesson3/target/classes/db.changelog-1.0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../level_3/Lesson3/target/classes/ru/gb/gerasimenko/JdbcApp.class" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/HistoryControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/chatroom/server/HistoryControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../level_3/Lesson4/src/main/java/ru/gb/gerasimenko/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/../level_3/Lesson4/src/main/java/ru/gb/gerasimenko/Task.java" afterDir="false" />
+>>>>>>> 449cba408f965c46034962ed865137fccd8c9557
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

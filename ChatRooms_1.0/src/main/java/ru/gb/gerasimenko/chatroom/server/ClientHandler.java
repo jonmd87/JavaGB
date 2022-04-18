@@ -90,8 +90,13 @@ public class ClientHandler {
         chatServer.sendUserList();
         this.historyControl = new HistoryControl(this.nick);
         this.sendMessage(Commands.BROADCAST.getStr() +
+<<<<<<< HEAD
                             Commands.ARG_SEPARATOR.getStr() +
                                 this.historyControl.getLastLines(DgtlConsts.HUNDRED.value()));
+=======
+                            Commands.ARG_SEPARATOR +
+                                this.historyControl.getHistory());
+>>>>>>> 449cba408f965c46034962ed865137fccd8c9557
 
     }
 
