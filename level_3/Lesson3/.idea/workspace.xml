@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="83c47fcf-c224-46ab-b1b7-9a559084d200" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DbUpdateDate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/newDb.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/ButtonsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/ButtonsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/DialogWindows.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/DialogWindows.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Buttons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/Helper/DgtlConsts.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/Helper/DgtlConsts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Phrases.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/Helper/Phrases.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/Helper/StrConsts.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/Helper/StrConsts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ChatClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientBroadcast.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientBroadcast.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientLogout.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientLogout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientNOTIFICATION.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientNOTIFICATION.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUpdateUsrList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUpdateUsrList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUserMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUserMovement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ChatServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/DataBaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/HistoryControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/HistoryControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/BroadcastHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/BroadcastHandlerServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DbRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DbRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DbUpdateNick.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DeleteAccountHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DeleteAccountHandlerServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/LogoutHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/java/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/LogoutHandlerServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/resources/ru/gb/gerasimenko/chatroom/BlaBlaRoom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/src/main/resources/ru/gb/gerasimenko/chatroom/BlaBlaRoom.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/BlaBlaRoom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/BlaBlaRoom.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/ButtonsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/ButtonsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/DialogWindows.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/DialogWindows.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/Helper/Buttons.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/Helper/Buttons.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/Helper/Commands.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/Helper/Commands.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/Helper/DgtlConsts.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/Helper/DgtlConsts.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/Helper/Phrases.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/Helper/Phrases.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/Helper/StrConsts.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/Helper/StrConsts.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ChatClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ChatClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientBroadcast.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientBroadcast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientERROR.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientNOTIFICATION.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientNOTIFICATION.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUpdateUsrList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUpdateUsrList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUserMovement.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/client/ClientRequestHandler/RequestHandler_ClientUserMovement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ChatServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ChatServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ClientHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/DataBaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/DataBaseConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/HistoryControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/HistoryControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer$User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/AuthenticationHandlerServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/BroadcastHandlerServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/BroadcastHandlerServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DbRegistration.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DbRegistration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DbUpdateNick.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DeleteAccountHandlerServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/DeleteAccountHandlerServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatRooms_1.0/target/classes/ru/gb/gerasimenko/chatroom/server/ServerRequestHandlers/RegistrationHandlerServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/liquibase.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/gerasimenko/JdbcApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.changelocg-master.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.changelog-1.0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db.changelocg-master.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db.changelog-1.0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/gb/gerasimenko/JdbcApp.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="27emikV2c8MHmuf2Ej6KlN2mRpQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+  </component>
+  <component name="RunManager" selected="Application.HomeWork">
+    <configuration name="AppBufferedOutInPutStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.AppBufferedOutInPutStream" />
+      <module name="inputOutput" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.gb.gerasimenko.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppBufferedReaderWriter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.AppBufferedReaderWriter" />
+      <module name="inputOutput" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.gb.gerasimenko.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppDataInOutPutStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.AppDataInOutPutStream" />
+      <module name="inputOutput" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.gb.gerasimenko.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppSerializable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.AppSerializable" />
+      <module name="inputOutput" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.gb.gerasimenko.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HomeWork" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.gb.gerasimenko.HomeWork" />
+      <module name="inputOutput" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.gb.gerasimenko.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HomeWork" />
+        <item itemvalue="Application.AppBufferedReaderWriter" />
+        <item itemvalue="Application.AppSerializable" />
+        <item itemvalue="Application.AppDataInOutPutStream" />
+        <item itemvalue="Application.AppBufferedOutInPutStream" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="83c47fcf-c224-46ab-b1b7-9a559084d200" name="Changes" comment="" />
+      <created>1649689056225</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649689056225</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
