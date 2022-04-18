@@ -2,13 +2,15 @@ package ru.gb.gerasimenko.chatroom.Helper;
 
 public enum StrConsts {
     LOCALHOST("localhost"),
-    WAITIN_NEXT_CONNECTION("Wainting next connection ..."),
+    WAITING_NEXT_CONNECTION("Wainting next connection ..."),
     SERV_RUNNING("The server is running ..."),
-    SERV_WAITNG("The server is waiting ..."),
+    SERV_WAITING("The server is waiting ..."),
     COMMA(","),
     END_LINE("\n"),
-    HISTORY_PATH("chat_history"),
-    TXT(".txt"),
+    HISTORY_DIR("./History/"),
+    PREFIX("chatHistory_"),
+    CHATUSERS("chatUsers"),
+    SUFFIX(".txt"),
     SESSION_CLOSED("Session closed.");
 
 

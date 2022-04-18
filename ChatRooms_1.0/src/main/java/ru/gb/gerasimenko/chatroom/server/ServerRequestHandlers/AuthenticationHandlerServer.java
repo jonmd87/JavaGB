@@ -1,6 +1,7 @@
 package ru.gb.gerasimenko.chatroom.server.ServerRequestHandlers;
 
 import ru.gb.gerasimenko.chatroom.Helper.Commands;
+import ru.gb.gerasimenko.chatroom.Helper.StrConsts;
 import ru.gb.gerasimenko.chatroom.Interfaces.ServerRequestHandler;
 import ru.gb.gerasimenko.chatroom.server.ChatServer;
 import ru.gb.gerasimenko.chatroom.server.DataBaseConnection;
@@ -21,15 +22,18 @@ public class AuthenticationHandlerServer implements ServerRequestHandler {
     }
 
     public String getNickByLoginPassword(DataBaseConnection db,  String login, Integer password) {
-        try (PreparedStatement ps = db.getConnection().prepareStatement(
-                "select * from user where login = ? and password = ?")) {
-            ps.setString(1, login);
-            ps.setInt(2, password);
-            final ResultSet resultSet = ps.executeQuery();
-            return (resultSet.next()) ? resultSet.getString(2) : null;
+        String nick = null;
+        try (PreparedStatement preparedStatement = db.getConnection().prepareStatement(
+                "select * from " + StrConsts.CHATUSERS.getStr() + " where login = ? and password = ?;")) {
+            preparedStatement.setString(1, login);
+            preparedStatement.setInt(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                nick = resultSet.getString(2);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return nick;
     }
 }

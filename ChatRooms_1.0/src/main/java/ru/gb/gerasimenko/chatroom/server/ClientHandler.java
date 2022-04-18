@@ -51,7 +51,9 @@ public class ClientHandler {
             timerThread.start();
             while (nick == null && timer.getFlag()) {
                 this.nick = chatServer.distribution(this.participant.readMessage());
-                if (!chatServer.subscribe(this)) {
+                if (Commands.DB_REGISTER.getStr().equals(this.nick)) {
+                    this.nick = null;
+                } else if (!chatServer.subscribe(this)) {
                     participant.sendMessage(Commands.NOTIFICATION.getStr() +
                                                 Commands.ARG_SEPARATOR.getStr() +
                                                     Phrases.WRONG_AUTH.ordinal() +
@@ -71,7 +73,6 @@ public class ClientHandler {
         try {
             sendInitializationData();
             while (this.participant.connectionActive()) {
-                System.out.println("listening net");
                 final String message = this.participant.readMessage();
                 if (this.participant.connectionActive()) {
                     chatServer.distribution(message);
@@ -86,17 +87,18 @@ public class ClientHandler {
     private void sendInitializationData() {
         this.sendMessage(Commands.AUTH_IN.getStr() +
                 Commands.ARG_SEPARATOR.getStr() + this.nick);
-        this.historyControl = new HistoryControl(this.nick);
         chatServer.sendUserList();
+        this.historyControl = new HistoryControl(this.nick);
         this.sendMessage(Commands.BROADCAST.getStr() +
-                            Commands.ARG_SEPARATOR +
-                                this.historyControl.getLastLines());
+                            Commands.ARG_SEPARATOR.getStr() +
+                                this.historyControl.getLastLines(DgtlConsts.HUNDRED.value()));
 
     }
 
     public void sendMessage(String message) {
         if (this.participant.connectionActive()) {
             try {
+                System.out.println("ClientHandler.in sendMessage " + message + "|");
                 this.participant.sendMessage(message);
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -110,6 +112,7 @@ public class ClientHandler {
 
     public void setNick(String nick) {
         this.nick = nick;
+        System.out.println("new nick " + nick);
     }
 
     public HistoryControl getHistoryControl() {

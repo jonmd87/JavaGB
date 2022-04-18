@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import ru.gb.gerasimenko.chatroom.Helper.Buttons;
 import javafx.fxml.FXML;
 import ru.gb.gerasimenko.chatroom.Helper.Commands;
+import ru.gb.gerasimenko.chatroom.Helper.Phrases;
 import ru.gb.gerasimenko.chatroom.Helper.StrConsts;
 import ru.gb.gerasimenko.chatroom.client.ChatClient;
 
@@ -24,6 +25,10 @@ public class ButtonsController {
     @FXML
     public MenuItem language;
     @FXML
+    public MenuItem singOUT; //[возможно решится когда будем проходить THREAD] скрыл потому-что при|Authorisation|->|Sing out|->|Authorisation| выскакивает ошибка ->Not on FX application thread; currentThread = Thread-2
+    @FXML
+    public MenuItem changeData;
+    @FXML
     public MenuItem exit;
     @FXML
     public TextArea generalTextArea;
@@ -35,7 +40,6 @@ public class ButtonsController {
     public Button privateMsg;
     @FXML
     public Label membersListLabel;
-   // @FXML private MenuItem singOUT; //[возможно решится когда будем проходить THREAD] скрыл потому-что при|Authorisation|->|Sing out|->|Authorisation| выскакивает ошибка ->Not on FX application thread; currentThread = Thread-2
 
     private byte lang = 0;
     private boolean loggedIN = false;
@@ -51,7 +55,8 @@ public class ButtonsController {
         menuFile.setText(Buttons.FILE.value(this.lang));
         authorization.setText(Buttons.AUTHORIZATION.value(this.lang));
         registration.setText(Buttons.REGISTRATION.value(this.lang));
-       // singOUT.setText(Buttons.SING_OUT.value(this.lang)); ////[возможно решится когда будем проходить THREAD] скрыл потому-что при|Authorisation|->|Sing out|->|Authorisation| выскакивает ошибка ->Not on FX application thread; currentThread = Thread-2
+        singOUT.setText(Buttons.SING_OUT.value(this.lang));
+        changeData.setText(Buttons.CHANGEDATA.value(this.lang));
         language.setText(Buttons.LANGUAGE.value(this.lang));
         exit.setText(Buttons.EXIT.value(this.lang));
         send.setText(Buttons.SEND.value(this.lang));
@@ -72,6 +77,12 @@ public class ButtonsController {
         textField.requestFocus();
     }
 
+    public void onChangeDataClick(ActionEvent actionEvent) {
+        if (this.loggedIN) {
+            this.chatClient.sendMessage(this.dialogWindows.changeDataWindow(this.lang, this.chatClient.getNick()));
+        }
+    }
+
     public void onLanguageClick(ActionEvent actionEvent) {
         this.setLang(this.dialogWindows.chooseLanguage());
         initButtons();
@@ -82,7 +93,8 @@ public class ButtonsController {
     }
 
     public void onRegistrationClick(ActionEvent actionEvent) {
-        final String authMsg = this.dialogWindows.registrationWindow(lang);
+        final String authMsg = this.dialogWindows.registrationWindow(lang,
+                        Buttons.REGISTRATION.value(lang), Phrases.NEW_USER.value(lang), true);
         if (authMsg.length() > 1) {
             this.chatClient.sendMessage(authMsg);
         }
@@ -121,10 +133,10 @@ public class ButtonsController {
 
     public void onExitClick(ActionEvent actionEvent) {
         if (loggedIN) {
-            System.out.println("in onExitClick");
             onSingOutClick(actionEvent);
+        } else if (dialogWindows.exitWindow(lang)) {
+            System.exit(0);
         }
-        System.exit(0);
     }
 
     public void onSingOutClick(ActionEvent actionEvent) {

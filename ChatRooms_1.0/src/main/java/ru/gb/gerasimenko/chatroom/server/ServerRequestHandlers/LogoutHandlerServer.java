@@ -17,7 +17,6 @@ public class LogoutHandlerServer implements ServerRequestHandler {
             client.sendMessage(Commands.LOGOUT.getStr() +
                                 Commands.ARG_SEPARATOR.getStr() +
                                     StrConsts.END_LINE.getStr());
-            client.getHistoryControl().get
             client.getParticipant().close();
             server.unsubscribe(data);
             server.sendUserList();

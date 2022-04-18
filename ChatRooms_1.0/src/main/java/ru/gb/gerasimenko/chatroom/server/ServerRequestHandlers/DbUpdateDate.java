@@ -35,7 +35,7 @@ public class DbUpdateDate implements ServerRequestHandler {
             preparedStatement.setString(5, oldData[1]); // login
             preparedStatement.setString(6, oldData[2]); // password
             preparedStatement.executeUpdate();
-            server.sendUserList();
+            server.updateUserData(oldData[0], newData[0]);
         } catch (SQLException e) {
             e.printStackTrace();
         }

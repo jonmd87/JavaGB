@@ -39,9 +39,6 @@ public class ChatClient {
                     String message = this.participant.readMessage();
                     System.out.println("incomingMSG CLIENT-->|" + message + "|<--");
                     String[] split = message.split(Commands.ARG_SEPARATOR.getStr());
-//                    for (String s : split) {
-//                        System.out.println("-" + s + "-");
-//                    }
                     RequestHandler_Client tempHandler = handler.get(split[0]);
                     tempHandler.handler(split[1], this);
                 }
@@ -53,8 +50,8 @@ public class ChatClient {
 
     public void sendMessage(String message){
         try {
-            System.out.println(message + " in send message");
-            if (!message.isEmpty()) {
+            if (message != null && !message.isEmpty()) {
+                System.out.println(message + " in send message");
                 this.participant.sendMessage(message);
             }
         } catch (IOException e) {
@@ -69,6 +66,7 @@ public class ChatClient {
         this.handler.put(Commands.BROADCAST.getStr(), new RequestHandler_ClientBroadcast());
         this.handler.put(Commands.NOTIFICATION.getStr(), new RequestHandler_ClientNOTIFICATION());
         this.handler.put(Commands.USER_MOVEMENTS.getStr(), new RequestHandler_ClientUserMovement());
+        this.handler.put(Commands.UPDATE_DATA.getStr(), new RequestHandler_ClientUpdateUserData());
     }
 
     public ButtonsController getButtonsController() {return buttonsController;}

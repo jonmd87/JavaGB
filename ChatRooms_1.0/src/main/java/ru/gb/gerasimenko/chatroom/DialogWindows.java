@@ -34,6 +34,7 @@ public class DialogWindows {
     }
 
     public boolean exitWindow(byte lang) {
+        System.out.println("exitWindows");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(Buttons.EXIT.value(lang));
         alert.setHeaderText(Phrases.CONFIRM_EXIT.value(lang));
@@ -74,10 +75,10 @@ public class DialogWindows {
 
         ButtonType buttonOk = new ButtonType(Buttons.OK.value(lang));
         ButtonType buttonCancel = new ButtonType(Buttons.CANCEL.value(lang));
-        ButtonType buttonRegistration = new ButtonType(Buttons.REGISTRATION.value(lang));
 
         loginWindow.getDialogPane().setContent(grid);
-        loginWindow.getDialogPane().getButtonTypes().setAll(buttonOk, buttonCancel, buttonRegistration);
+        loginWindow.getDialogPane().getButtonTypes().setAll(buttonOk, buttonCancel);
+
         String answer = "";
         while (true) {
             Optional<ButtonType> result = loginWindow.showAndWait();
@@ -90,8 +91,6 @@ public class DialogWindows {
                                             passFld.getText().hashCode();
                    break;
                }
-            } else if (result.get() == buttonRegistration) {
-                answer = registrationWindow(lang);
             } else if (result.get() == buttonCancel) {
                 break;
             }
@@ -99,16 +98,15 @@ public class DialogWindows {
         return answer;
     }
 
-    public String registrationWindow(byte lang) {
+    public String registrationWindow(byte lang, String title, String header, boolean registration) {
         Dialog<ButtonType> loginWindow = new Dialog<>();
-        loginWindow.setTitle(Buttons.REGISTRATION.value(lang));
-        loginWindow.setHeaderText(Phrases.NEW_USER.value(lang));
+        loginWindow.setTitle(title);
+        loginWindow.setHeaderText(header);
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(padding, padding, padding, padding));
         grid.setHgap(padding / 2);
         grid.setVgap(padding / 2);
-
 
         Label nickLbl = new Label(Phrases.NICK.value(lang));
         GridPane.setConstraints(nickLbl, 0, 0);
@@ -133,22 +131,31 @@ public class DialogWindows {
         GridPane.setConstraints(passFld, 2, 1);
         grid.getChildren().add(passFld);
 
+        Label confirmPassLbl = new Label(Phrases.CONFIRM_PAS.value(lang));
+        GridPane.setConstraints(confirmPassLbl, 2, 3);
+        grid.getChildren().add(confirmPassLbl);
+
+        PasswordField confirmPass = new PasswordField();
+        GridPane.setConstraints(confirmPass, 2, 4);
+        grid.getChildren().add(confirmPass);
+
         ButtonType buttonOk = new ButtonType(Buttons.OK.value(lang));
         ButtonType buttonCancel = new ButtonType(Buttons.CANCEL.value(lang));
 
         loginWindow.getDialogPane().setContent(grid);
         loginWindow.getDialogPane().getButtonTypes().setAll(buttonOk, buttonCancel);
-        Optional<ButtonType> result = loginWindow.showAndWait();
         String answer = "";
         while (true) {
+            Optional<ButtonType> result = loginWindow.showAndWait();
             if (result.get() == buttonOk) {
-                if (checkEnteredData(nickTxtFld.getText(), loginTxtFld.getText(), passFld.getText(), lang)){
-                    alertWindow(Phrases.ALERT.value(lang), Phrases.AFTER_REGISTER_MSG.value(lang), "");
+                if (checkEnteredData(nickTxtFld.getText(), loginTxtFld.getText(), passFld.getText(), lang) &&
+                                                                passFld.getText().equals(confirmPass.getText())){
+                    if (registration) {alertWindow(Phrases.ALERT.value(lang), Phrases.AFTER_REGISTER_MSG.value(lang), "");}
                     answer += Commands.DB_REGISTER.getStr() +
                                 Commands.CMD_SEPARATOR.getStr() +
-                                    nickTxtFld +
+                                    nickTxtFld.getText() +
                                         Commands.ARG_SEPARATOR.getStr() +
-                                            loginLbl +
+                                            loginTxtFld.getText() +
                                                 Commands.ARG_SEPARATOR.getStr() +
                                                     passFld.getText().hashCode();
                     break;
@@ -156,6 +163,10 @@ public class DialogWindows {
             } else if (result.get() == buttonCancel) {
                 break;
             }
+            nickTxtFld.clear();
+            loginTxtFld.clear();
+            passFld.clear();
+            confirmPass.clear();
         }
         return answer;
     }
@@ -175,7 +186,7 @@ public class DialogWindows {
         if (alarm.length() > 1) {
             this.alertWindow(Phrases.ALERT.value(lang), Phrases.ALERT.value(lang), alarm);
         }
-        return (alarm.length() < 1) ? true : false;
+        return alarm.length() < 1;
     }
 
     public String privateMessage(String author, String recipient, ArrayList<String> data, byte lang) {
@@ -243,4 +254,21 @@ public class DialogWindows {
         }
         return true;
     }
+
+    public String  changeDataWindow(byte lang, String nick) {
+        String nickLogPass = registrationWindow(lang, Phrases.CHANGE_DATA.value(lang),
+                                                            Phrases.ENTER_OLD_DATA.value(lang), false);
+        if (nickLogPass.contains(nick)) {
+            nickLogPass = nickLogPass.replace(Commands.DB_REGISTER.getStr(), Commands.UPDATE_DATA.getStr());
+            String newNickLogPass = registrationWindow(lang, Phrases.CHANGE_DATA.value(lang),
+                    Phrases.ENTER_NEW_DATA.value(lang), false);
+            nickLogPass += newNickLogPass.replace(Commands.DB_REGISTER.getStr() + Commands.CMD_SEPARATOR.getStr(),
+                                                                                        Commands.STR_SEPARATOR.getStr());
+        } else {
+            nickLogPass = null;
+            this.alertWindow(Phrases.ALERT.value(lang), Phrases.WRONG_DATA.value(lang), "");
+        }
+        return nickLogPass;
+    }
+
 }

@@ -8,7 +8,6 @@ import ru.gb.gerasimenko.chatroom.client.ChatClient;
 public class RequestHandler_ClientUpdateUsrList implements RequestHandler_Client {
     @Override
     public void handler(String data, ChatClient client) {
-//        System.out.println("in UpdateUserlistDATA-->|" + data + "|");
         String[] split = this.dataToStringArray(data, Commands.STR_SEPARATOR.getStr());
         client.getButtonsController().updateMemberList(split);
     }

@@ -12,7 +12,6 @@ public class RequestHandler_ClientLogout implements RequestHandler_Client {
             client.setNick(null);
             client.getParticipant().close();
         } catch (IOException e) {
-            System.out.println("in RequestHandler_ClientLogout");
             e.printStackTrace();
         }
     }

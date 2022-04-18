@@ -13,8 +13,9 @@
         <Menu fx:id="menuFile" text="File">
             <MenuItem fx:id="authorization" onAction="#onAuthorizationClick" text="Authorization" />
             <MenuItem fx:id="registration" onAction="#onRegistrationClick" text="Registration" />
+            <MenuItem fx:id="changeData" onAction="#onChangeDataClick" text="Change Nick"/>
             <MenuItem fx:id="language" onAction="#onLanguageClick" text="Language" />
-            <MenuItem fx:id="singOUT" onAction="#onSingOutClick" text="Sing Out" visible="false" />
+            <MenuItem fx:id="singOUT" onAction="#onSingOutClick" text="Sing Out" />
             <MenuItem fx:id="exit" onAction="#onExitClick" text="Exit" />
         </Menu>
     </MenuBar>

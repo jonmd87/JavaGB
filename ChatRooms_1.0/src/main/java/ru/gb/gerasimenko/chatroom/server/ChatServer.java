@@ -24,13 +24,16 @@ public class ChatServer {
     }
 
     public void start() {
-        System.out.println(StrConsts.SERV_WAITNG.getStr());
+        System.out.println(StrConsts.SERV_WAITING.getStr());
         while (true) {
             try (ServerSocket serverSocket = new ServerSocket(DgtlConsts.PORT.value())) {
                 new ClientHandler(this, serverSocket);
-                System.out.println(StrConsts.WAITIN_NEXT_CONNECTION.getStr());
+                System.out.println(StrConsts.WAITING_NEXT_CONNECTION.getStr());
             } catch (IOException ioEx) {
                 ioEx.printStackTrace();
+            }
+            for (String nick : clients.keySet()) {
+                System.out.println(nick);
             }
         }
     }
@@ -39,7 +42,6 @@ public class ChatServer {
         String[] split = message.split(Commands.CMD_SEPARATOR.getStr());
         final ServerRequestHandler tempHandler = handler.get(split[0]);
         System.out.println("incoming " + message);
-        System.out.println("distribution throw [" + split[1] + "]");
         return tempHandler.handler(split[1], this);
     }
 
@@ -74,7 +76,6 @@ public class ChatServer {
 
     public void sendUserList() {
         if (clients.size() > 0) {
-            System.out.println(clients.size());
             String data = Commands.BROADCAST.getStr() +
                     Commands.CMD_SEPARATOR.getStr() +
                     Commands.UPDATE_USERS_LIST.getStr() +
@@ -86,13 +87,28 @@ public class ChatServer {
         }
     }
 
+    public void updateUserData(String oldNick, String newNick) {
+        System.out.println("old " + oldNick + " new " + newNick);
+        ClientHandler temp = this.clients.get(oldNick);
+        this.clients.put(newNick, temp);
+        this.clients.remove(oldNick);
+        System.out.println(temp.toString());
+        if (temp != null) {
+            temp.setNick(newNick);
+            temp.getHistoryControl().renameHistoryFile(newNick);
+            temp.sendMessage(Commands.UPDATE_DATA.getStr() + Commands.ARG_SEPARATOR.getStr() + temp.getNick());
+            sendUserList();
+        }
+    }
+
     private void initHandlers() {
         handler.put(Commands.AUTH_IN.getStr(), new AuthenticationHandlerServer());
         handler.put(Commands.BROADCAST.getStr(), new BroadcastHandlerServer());
         handler.put(Commands.DB_REGISTER.getStr(), new DbRegistration());
-        handler.put(Commands.DB_UPDATE_NICK.getStr(), new DbUpdateNick());
+        handler.put(Commands.DB_UPDATE_NICK.getStr(), new DbUpdateDate());
         handler.put(Commands.LOGOUT.getStr(), new LogoutHandlerServer());
         handler.put(Commands.TARGET_DELIVERY.getStr(), new TargetedDeliveryHandlerServer());
+        handler.put(Commands.UPDATE_DATA.getStr(), new DbUpdateDate());
     }
 
     public HashMap<String, ClientHandler> getClients() {

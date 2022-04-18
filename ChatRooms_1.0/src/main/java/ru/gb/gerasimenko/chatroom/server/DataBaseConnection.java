@@ -1,6 +1,8 @@
 package ru.gb.gerasimenko.chatroom.server;
 
 
+import ru.gb.gerasimenko.chatroom.Helper.StrConsts;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,7 +14,7 @@ public class DataBaseConnection {
 
     public DataBaseConnection() {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:newDb.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:chatUsers.db");
             createStatement();
             createTable();
         } catch (SQLException e) {
@@ -33,7 +35,7 @@ public class DataBaseConnection {
     public void createTable() {
         try {
             statement.executeUpdate("" +
-                    "create table if not exists user (" +
+                    "create table if not exists " + StrConsts.CHATUSERS.getStr() + "(" +
                     " id integer primary key autoincrement," +
                     " nick text not null unique," +
                     " login text not null unique," +

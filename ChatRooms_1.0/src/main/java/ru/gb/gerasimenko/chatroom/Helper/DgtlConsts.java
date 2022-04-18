@@ -5,9 +5,9 @@ public  enum DgtlConsts {
     PADDING(10),
     MIN_NICK_LENTH(3),
     MIN_LOGPASS_LEN(3),
-    HUNDRED(100),
+    HUNDRED(10),
     BUF_SIZE(1024),
-    SEC_120(20);  // in release change to 120 seconds
+    SEC_120(120);  // in release change to 120 seconds
 
 
     private int digit;
