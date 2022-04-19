@@ -1,0 +1,14 @@
+
+TRACE 2022-04-19 12:06:55 [main] org.example.AppLog4J (AppLog4J.java:13) - trace
+DEBUG 2022-04-19 12:06:55 [main] org.example.AppLog4J (AppLog4J.java:14) - debug
+INFO  2022-04-19 12:06:55 [main] org.example.AppLog4J (AppLog4J.java:15) - info
+WARN  2022-04-19 12:06:55 [main] org.example.AppLog4J (AppLog4J.java:16) - warn
+ERROR 2022-04-19 12:06:55 [main] org.example.AppLog4J (AppLog4J.java:17) - error
+FATAL 2022-04-19 12:06:55 [main] org.example.AppLog4J (AppLog4J.java:18) - fatal
+FATAL 2022-04-19 12:07:17 [main] org.example.AppLog4J (AppLog4J.java:18) - fatal
+TRACE 2022-04-19 12:09:01 [main] org.example.AppLog4J (AppLog4J.java:14) - trace 101
+DEBUG 2022-04-19 12:09:01 [main] org.example.AppLog4J (AppLog4J.java:15) - debug
+INFO  2022-04-19 12:09:01 [main] org.example.AppLog4J (AppLog4J.java:16) - info
+WARN  2022-04-19 12:09:01 [main] org.example.AppLog4J (AppLog4J.java:17) - warn
+ERROR 2022-04-19 12:09:01 [main] org.example.AppLog4J (AppLog4J.java:18) - error
+FATAL 2022-04-19 12:09:01 [main] org.example.AppLog4J (AppLog4J.java:19) - fatal
