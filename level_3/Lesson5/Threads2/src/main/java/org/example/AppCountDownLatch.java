@@ -12,10 +12,10 @@ public class AppCountDownLatch {
         for (int i = 0; i < THREAD_COUNT; i++) {
             new Thread(() -> {
                 try {
-                    System.out.println("\t\tstarted " + Thread.currentThread().getName());
+                    System.out.println(Thread.currentThread().getName() + " готовится");
                     Thread.sleep(new Random().nextInt(1000)); // типо какая то работа
                     countDownLatch.countDown(); // уменьшается количество потоков
-                    System.out.println("\t\tfinished " + Thread.currentThread().getName());
+                    System.out.println("\t\t" + Thread.currentThread().getName() + " готов");
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

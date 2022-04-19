@@ -5,7 +5,7 @@ import java.util.concurrent.Semaphore;
 
 public class AppSemaphor {
     public static void main(String[] args) {
-        final Semaphore semaphore = new Semaphore(4);
+        final Semaphore semaphore = new Semaphore(2);
         Runnable r = () -> {
             try  {
                 semaphore.acquire();
@@ -20,7 +20,7 @@ public class AppSemaphor {
             }
         };
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
             new Thread(r).start();
         }
     }

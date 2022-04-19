@@ -11,12 +11,12 @@ public class AppCyclicBarrier {
         for (int i = 0; i < THREADS; i++) {
             new Thread(() -> { //create new thread
                 try {
-                    System.out.println(Thread.currentThread().getName() + " await");
+                    System.out.println(Thread.currentThread().getName() + " is preparing");
                     barrier.await(); // ЗДЕСЬ ПОТОКИ блокируются. как только заблокируется последний поток
                     // они одновременно запустятся
-                    System.out.println(Thread.currentThread().getName() + " start");
+                    System.out.println(Thread.currentThread().getName() + " is ready");
                     barrier.await(); // опять соберутся все потоки в жтой точке
-                    System.out.println(Thread.currentThread().getName() + " started 2");
+
                 } catch (BrokenBarrierException e) {
                     throw new RuntimeException(e);
                 } catch (InterruptedException e) {
