@@ -1,25 +1,25 @@
 package org.example;
 
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.*;
 
 public class MainClass {
     public static final int CARS_COUNT = 4;
 
     public static void main(String[] args) {
-        final CountDownLatch cdl = new CountDownLatch(CARS_COUNT);
-        final CyclicBarrier barrier = new CyclicBarrier(CARS_COUNT);
-        final Semaphore semaphore = new Semaphore(CARS_COUNT / 2);
+        CountDownLatch cdl = new CountDownLatch(CARS_COUNT);   // My additional variable
+        CyclicBarrier barrier = new CyclicBarrier(CARS_COUNT); // My additional variable
+        Semaphore semaphore = new Semaphore(CARS_COUNT / 2, true); // My additional variable
+        ArrayBlockingQueue<Car> carsArray = new ArrayBlockingQueue<>(CARS_COUNT); // My additional variable
+
         Race race = new Race(new Road(60), new Tunnel(), new Road(40));
         Car[] cars = new Car[CARS_COUNT];
 
-        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
         for (int i = 0; i < cars.length; i++) {
-            cars[i] = new Car(race, 20 + (int) (Math.random() * 10), barrier, cdl, semaphore);
+            cars[i] = new Car(race, 20 + (int) (Math.random() * 10), cdl, barrier, semaphore, carsArray);
         }
+
+        System.out.println("\t\tВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
 
         for (int i = 0; i < cars.length; i++) {
             new Thread(cars[i]).start();
@@ -27,10 +27,17 @@ public class MainClass {
 
         try {
             cdl.await();
-            System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
-//            System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
+            System.out.println("\t\tВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
+        try {
+            System.out.println("\n!!!!!!!!!!!!!!!!! " + carsArray.take().getName() + " WIN\n");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        while (carsArray.size() != CARS_COUNT - 1);
+        System.out.println("\t\tВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
     }
 }
